@@ -1,0 +1,120 @@
+# Model files - PyTorch
+*.pth
+*.pt
+*.ckpt
+*.pth.tar
+*.pt.tar
+
+# Model files - TensorFlow/Keras
+*.h5
+*.pb
+*.ckpt.index
+*.ckpt.data*
+*.ckpt.meta
+
+# Model files - ONNX
+*.onnx
+
+# Model files - HuggingFace
+*.safetensors
+*.bin
+*.model
+
+# Model files - Other formats
+*.weights
+*.tflite
+*.mlmodel
+
+# Cache directories
+Cache/
+cache/
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# HuggingFace cache
+hub/
+models--*/
+*.lock
+
+# FAISS indices
+*.index
+*.faiss
+faiss_indices/
+
+# Feature files and data
+*.npy
+*.npz
+*.hdf5
+*.h5
+*.feather
+*.parquet
+
+# Dataset directories (if large)
+dataset/
+datasets/
+data/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environment and IDE
+.venv/
+venv/
+env/
+ENV/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.out
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Weights and checkpoints directories
+weights/
+checkpoints/
+checkpoint/
+saved_models/
+models/
+
+# Large output files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Python
+*.egg-info/
+dist/
+build/
+*.so
+*.egg
+
+# Thêm các thư mục pipeline (giữ lại các dòng này nếu cần)
+# scripts/
+# utils/
+# libs/
