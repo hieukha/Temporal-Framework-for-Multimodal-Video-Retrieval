@@ -1,0 +1,17 @@
+# FAISS GPU dependencies
+faiss-gpu>=1.7.4
+numpy>=1.21.0
+pickle5>=0.0.11
+
+# Existing dependencies that might be needed
+fastapi>=0.68.0
+uvicorn>=0.15.0
+pydantic>=1.8.0
+ujson>=5.0.0
+
+# For GPU support
+torch>=1.9.0
+torchvision>=0.10.0
+
+# Optional: for better performance
+scipy>=1.7.0 

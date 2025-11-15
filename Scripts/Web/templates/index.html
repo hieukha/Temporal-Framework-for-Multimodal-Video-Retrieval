@@ -1,0 +1,4637 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIC 2025 SIU Sayan - Video Search</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Light mode colors */
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --header-bg: #f8f9fa;
+            --input-bg: #ffffff;
+            --input-border: #ced4da;
+            --primary-color: #0099ff;
+            --secondary-color: #6c757d;
+            --accent-color: #667eea;
+            --hover-color: rgba(0,0,0,0.08);
+            --modal-bg: rgba(0,0,0,0.8);
+            --modal-content-bg: #ffffff;
+        }
+        
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+            --header-bg: #1e1e1e;
+            --input-bg: #2d2d2d;
+            --input-border: #444444;
+            --primary-color: #0099ff;
+            --secondary-color: #aaaaaa;
+            --accent-color: #667eea;
+            --hover-color: rgba(255,255,255,0.1);
+            --modal-bg: rgba(0,0,0,0.9);
+            --modal-content-bg: #1e1e1e;
+            color-scheme: dark;
+        }
+        
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 4px;
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            height: calc(100vh - 8px);
+            overflow: hidden;
+        }
+
+        .main-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+            padding: 8px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .search-section {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .secondary-search-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+            padding: 8px 0;
+            justify-content: center;
+        }
+
+        .search-input-wrapper.small {
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .search-input.small {
+            width: 100%;
+            font-size: 13px;
+            padding: 6px 8px;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .search-input.small:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 153, 255, 0.1);
+            outline: none;
+        }
+
+        .speech-btn.small {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 50%;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            margin-left: 4px;
+            height: 24px;
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .speech-btn.small:hover {
+            color: var(--text-color);
+            background-color: var(--hover-color);
+        }
+
+        .search-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .search-input {
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            padding: 8px 65px 8px 12px;
+            font-size: 14px;
+            width: 1100px;
+            position: relative;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+        .speech-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 50%;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+            height: 32px;
+            width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-toggle {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+            height: 32px;
+            width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .speech-btn:hover, .lang-toggle:hover {
+            color: var(--text-color);
+            background-color: var(--hover-color);
+        }
+
+        .speech-btn.recording {
+            color: #ff6b81;
+            background-color: rgba(220, 53, 69, 0.2);
+            animation: pulse 1.5s infinite;
+        }
+
+        .speech-btn.processing {
+            color: #4da3ff;
+            background-color: rgba(0, 123, 255, 0.2);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .speech-status {
+            position: absolute;
+            top: -30px;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .speech-status.show {
+            opacity: 1;
+        }
+
+        .speech-status::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 10px;
+            border: 4px solid transparent;
+            border-top-color: #333;
+        }
+
+        .search-history {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+        }
+
+        .search-history-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-history-item:hover {
+            background-color: var(--hover-color);
+        }
+
+        .search-history-item.selected {
+            background-color: rgba(0, 153, 255, 0.18);
+        }
+
+        .search-history-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-history-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .search-history-delete {
+            color: #ff6b81;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .search-history-delete:hover {
+            background-color: #ff6b81;
+            color: #fff;
+        }
+
+        .search-history-clear {
+            padding: 8px 12px;
+            text-align: center;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-color);
+        }
+
+        .search-history-clear:hover {
+            background-color: var(--hover-color);
+        }
+
+        .model-options {
+            display: inline-flex;
+            gap: 15px;
+            margin: 0 15px;
+        }
+
+        .model-option input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .model-option label {
+            font-size: 14px;
+            margin-right: 0;
+            cursor: pointer;
+        }
+
+        .advanced-options {
+            display: inline-flex;
+            gap: 15px;
+            margin: 0 15px;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 3px;
+        }
+
+        .checkbox-option label {
+            font-size: 14px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0077cc;
+        }
+        
+        input[type="text"], input[type="number"] {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--input-border);
+        }
+        
+        .model-option label, .checkbox-option label {
+            color: var(--text-color);
+        }
+        
+        .timeline-item {
+            background-color: var(--card-bg);
+        }
+        
+        .slide-container {
+            background-color: var(--card-bg);
+        }
+        
+        .frame-placeholder {
+            background-color: var(--header-bg);
+            color: var(--text-color);
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .size-slider {
+            width: 200px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+            align-items: center;
+        }
+
+        .input-row input {
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 14px;
+            flex: 1;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .input-row input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 153, 255, 0.25);
+        }
+
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 2px; /* giảm khoảng cách giữa các frame */
+            margin-top: 0;
+            padding: 4px;
+        }
+        .image-card {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color); /* đường viền xanh mỏng */
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            margin: 0;
+            box-shadow: none;
+        }
+        .image-card:hover {
+            box-shadow: 0 2px 4px var(--hover-color);
+            transform: none;
+        }
+        .image-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+        }
+        .play-btn {
+            position: absolute;
+            left: 8px;
+            bottom: 8px;
+            top: auto;
+            transform: none;
+            background: rgba(0,0,0,0.3);
+            border: none;
+            border-radius: 50%;
+            padding: 10px 14px;
+            cursor: pointer;
+            z-index: 2;
+            opacity: 0.5; /* làm mờ nút play */
+        }
+        .play-btn:hover {
+            background: rgba(0,0,0,0.5);
+            opacity: 0.7;
+        }
+
+        .image-info {
+            padding: 8px;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .video-info {
+            padding: 0;
+            margin: 0;
+            background: var(--header-bg);
+            border-top: 1px solid var(--border-color);
+            font-size: 11px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .image-info-row {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            margin-bottom: 2px;
+            flex: 0 0 auto;
+        }
+
+        .image-info-row:last-child {
+            margin-right: 0;
+        }
+
+        .image-info-label {
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 10px;
+            margin-right: 5px;
+        }
+
+        .image-info-value {
+            color: var(--secondary-color);
+            font-family: monospace;
+            font-size: 10px;
+        }
+
+        .image-time {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .image-details {
+            color: var(--secondary-color);
+        }
+
+        .image-details div {
+            margin-bottom: 2px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px 20px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            color: var(--text-color);
+        }
+
+        .no-results h5 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .no-results p {
+            color: var(--secondary-color);
+        }
+        
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0077cc;
+        }
+        
+        input[type="text"], input[type="number"] {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--input-border);
+        }
+        
+        .model-option label, .checkbox-option label {
+            color: var(--text-color);
+        }
+        
+        .timeline-item {
+            background-color: var(--card-bg);
+        }
+        
+        .slide-container {
+            background-color: var(--card-bg);
+        }
+        
+        .frame-placeholder {
+            background-color: var(--header-bg);
+            color: var(--text-color);
+        }
+
+        .loading-spinner {
+            display: none;
+            margin-left: 8px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--modal-bg);
+            padding: 20px 10px;
+        }
+        
+        .video-modal-content {
+            background-color: var(--modal-content-bg);
+            margin: 2vh auto;
+            border-radius: 8px;
+            width: 95%;
+            max-width: 1200px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .video-modal-header {
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--header-bg);
+        }
+        
+        .video-modal-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .video-modal-body {
+            padding: 10px 15px;
+            position: relative;
+            background-color: var(--modal-content-bg);
+        }
+        
+        .video-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        /* Drag & Drop Styles */
+        .drag-drop-mode .image-card {
+            cursor: move;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .drag-drop-mode .image-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .image-card.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+            z-index: 1000;
+        }
+        
+        .image-card.drag-over {
+            border: 2px dashed #8e44ad;
+            background-color: rgba(142, 68, 173, 0.1);
+        }
+        
+        /* Delete Frame Button */
+        .delete-frame-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        
+        .delete-frame-btn:hover {
+            background: #dc3545;
+            transform: scale(1.1);
+        }
+        
+        .drag-drop-mode .delete-frame-btn {
+            display: flex;
+        }
+        
+        /* Frame Number Styles */
+        .frame-number {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+
+        .video-player {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            background: #000;
+        }
+
+        .video-info-row {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            margin-bottom: 2px;
+            flex: 0 0 auto;
+        }
+
+        .video-info-row:last-child {
+            margin-right: 0;
+        }
+
+        .video-info-label {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 10px;
+            margin-right: 5px;
+        }
+
+        .video-info-value {
+            color: var(--secondary-color);
+            font-family: monospace;
+            font-size: 10px;
+        }
+
+        /* Thêm CSS cho nút gạt (switch) hiển thị frame xung quanh */
+        .frame-switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+            color: var(--text-color);
+        }
+
+        .frame-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .frame-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .frame-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border-color);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .frame-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--card-bg);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .frame-slider {
+            background-color: var(--accent-color);
+        }
+
+        input:focus + .frame-slider {
+            box-shadow: 0 0 1px var(--accent-color);
+        }
+
+        input:checked + .frame-slider:before {
+            transform: translateX(26px);
+        }
+
+        .video-loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-color);
+        }
+
+        .video-loading i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .video-error {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #dc3545;
+        }
+
+        .video-controls {
+            padding: 15px 20px;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .video-control-btn {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .video-control-btn:hover {
+            background: #0056b3;
+        }
+
+        .video-control-btn:disabled {
+            background: var(--secondary-color);
+            cursor: not-allowed;
+        }
+
+        .time-display {
+            font-family: monospace;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            padding: 10px 14px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .play-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .search-input {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .search-container {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .search-input-wrapper {
+                width: 100%;
+            }
+            
+            .search-history {
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+            
+            .speech-btn {
+                right: 8px;
+            }
+            
+            .model-options, .advanced-options {
+                flex-wrap: wrap;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-row, .options-row, .actions-row {
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px 0;
+            }
+            
+            .options-row {
+                justify-content: center;
+            }
+            
+            .model-selector, .toggle-switches, .advanced-fields, .action-buttons {
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .advanced-field {
+                max-width: 100%;
+            }
+            
+            .advanced-field.qa-field {
+                min-width: auto;
+                flex: 1;
+            }
+            
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .video-modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .video-controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+        /* Row 1: Search Query Bar - Compact */
+        .search-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+            padding: 8px 0;
+        }
+        
+        /* Row 2: Model Options and Settings - Compact */
+        .options-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 6px 0;
+            justify-content: center;
+        }
+        
+        /* Row 3: Actions and Advanced Fields - Compact */
+        .actions-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 6px 0;
+            justify-content: center;
+        }
+        
+        .top-bar {
+            display: none; /* Hide old structure */
+        }
+        .top-bar-left {
+            display: none;
+        }
+        .top-bar-right {
+            display: none;
+        }
+        /* Search input styling */
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            width: 100%;
+            font-size: 14px;
+            padding: 8px 12px;
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.1);
+            outline: none;
+        }
+        
+        /* Model selector styling */
+        .model-selector {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .model-selector label {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-right: 8px;
+        }
+        .model-option {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .model-option:hover {
+            background: var(--hover-color);
+        }
+        .model-option input[type="radio"] {
+            margin: 0;
+        }
+        .model-option input[type="radio"]:checked + label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Toggle switches styling */
+        .toggle-switches {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .toggle-switch:hover {
+            background: var(--hover-color);
+        }
+        .toggle-switch input[type="checkbox"] {
+            margin: 0;
+        }
+        .toggle-switch input[type="checkbox"]:checked + label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Size slider styling */
+        .size-control {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .size-control label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .size-slider {
+            width: 120px;
+        }
+        .size-display {
+            font-weight: 600;
+            color: var(--primary-color);
+            min-width: 60px;
+            text-align: center;
+            padding: 4px 8px;
+            background: rgba(0, 153, 255, 0.1);
+            border-radius: 4px;
+        }
+        /* Button styling */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-left: auto;
+        }
+        .btn-modern {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-primary-modern {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-primary-modern:hover {
+            background: #0066cc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 153, 255, 0.3);
+        }
+        .btn-success-modern {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success-modern:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+        .btn-danger-modern {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger-modern:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+        
+        /* Advanced fields styling */
+        .advanced-fields {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex: 1;
+        }
+        .advanced-field {
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .advanced-field.qa-field {
+            flex: 2;
+            max-width: none;
+            min-width: 300px;
+        }
+        .advanced-field input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .advanced-field input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.1);
+            outline: none;
+        }
+        
+        /* ID/Token badges */
+        .id-badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .id-badge {
+            padding: 4px 8px;
+            background: rgba(0, 153, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .id-badge input {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            width: 100px;
+        }
+        .id-badge input:focus {
+            outline: none;
+        }
+        
+        /* Results limit control */
+        .results-control {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .results-control input {
+            width: 80px;
+            padding: 4px 8px;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            text-align: center;
+        }
+        
+        .model-options, .checkbox-option, .slider-container, .session-box {
+            margin: 0;
+            gap: 4px;
+        }
+        
+        /* Form controls area - fixed height */
+        .form-controls {
+            flex-shrink: 0;
+            padding-bottom: 8px;
+        }
+        
+        /* Results area - scrollable */
+        .results-container {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding-top: 8px;
+        }
+        .model-options {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .submit-btn {
+            margin: 0;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+        .session-box {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+        .session-box input {
+            width: 70px;
+            font-size: 13px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            border: 1px solid var(--input-border);
+        }
+        .session-box button {
+            padding: 4px 8px;
+            font-size: 13px;
+        }
+        .input-row {
+            margin: 0 0 4px 0;
+            gap: 4px;
+        }
+        .main-container {
+            padding: 4px 4px 0 4px;
+        }
+        .image-grid {
+            margin-top: 0;
+        }
+        .frames-container {
+            display: none;
+            padding: 0;
+            background: var(--card-bg);
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .frames-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .frame-item {
+            position: relative;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            flex: 0 0 180px;
+            margin: 5px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-bg);
+        }
+
+        .frame-item:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .frame-item.active {
+            border-color: var(--accent-color);
+        }
+
+        .frame-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            background-color: var(--bg-color);
+        }
+        
+        .frame-item img.img-error {
+            background-color: rgba(220, 53, 69, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 12px;
+            color: #ff9aa2;
+            padding: 10px;
+        }
+
+        .frame-item .frame-number {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 13px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .frame-placeholder {
+            width: 100%;
+            height: 120px;
+            background-color: var(--header-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .frame-placeholder span {
+            margin-bottom: 5px;
+        }
+
+        .frame-placeholder .frame-number {
+            position: relative;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 13px;
+            padding: 5px 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+        }
+        
+        .frames-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .frame-results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .frame-result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 5px 10px;
+            min-width: 150px;
+        }
+        
+        .frame-result-item.success {
+            border-left: 3px solid #28a745;
+        }
+        
+        .frame-result-item.error {
+            border-left: 3px solid #dc3545;
+        }
+        
+        .frame-id {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* CSS cho dạng slide mới */
+        .frames-slider {
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .frames-slider .slide-item.current {
+            display: none !important; /* Ẩn frame hiện tại */
+        }
+        
+        .slide-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: calc(70vh - 250px);
+            min-height: 350px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+        }
+        
+        /* Thêm CSS cho timeline frame */
+        .frame-timeline {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            overflow-x: auto;
+            padding: 5px 0;
+            min-height: 80px;
+            scroll-behavior: smooth;
+        }
+        
+        .timeline-item {
+            flex: 0 0 90px;
+            height: 60px;
+            margin: 0 4px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .timeline-item.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(74, 137, 220, 0.5);
+        }
+        
+        .timeline-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .timeline-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: var(--header-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .timeline-item .frame-number {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 10px;
+            padding: 2px 0;
+            text-align: center;
+        }
+        
+        .slide-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .slide-item.active {
+            display: flex;
+        }
+        
+        .slide-item img {
+            max-width: 100%;
+            max-height: 90%;
+            object-fit: contain;
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.2s ease;
+        }
+        
+
+
+        .frames-slider .slide-item .frame-number {
+            position: absolute !important;
+            bottom: 20px; /* Điều chỉnh vị trí từ dưới lên, ví dụ 20px */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 8px 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 4px;
+            width: auto;
+            height: auto;
+        }
+
+        
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+            border-radius: 50%;
+        }
+        
+        .slide-nav:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .slide-prev {
+            left: 15px;
+        }
+        
+        .slide-next {
+            right: 15px;
+        }
+        
+        .no-frame-message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            color: var(--text-color);
+            background-color: var(--header-bg);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Điều chỉnh video modal để tận dụng không gian tốt hơn */
+        .modal-content {
+            height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+        }
+        
+        .modal-body {
+            flex: 1;
+            overflow: hidden;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            max-height: calc(100vh - 120px);
+        }
+        
+        #framesContainer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .frame-range-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: 15px;
+            background: var(--header-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .frame-size-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid var(--border-color);
+        }
+        
+        .size-label {
+            font-size: 13px;
+            white-space: nowrap;
+            color: var(--text-color);
+        }
+        
+        .frame-size-slider {
+            width: 80px;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border-color);
+            outline: none;
+            border-radius: 3px;
+        }
+        
+        .frame-size-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+        }
+        
+        .frame-size-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: none;
+        }
+        
+        #frameSizeValue {
+            font-size: 12px;
+            min-width: 36px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .range-label {
+            font-size: 13px;
+            white-space: nowrap;
+            color: var(--text-color);
+        }
+        
+        .frame-range-input {
+            width: 50px;
+            height: 24px;
+            padding: 2px 4px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            font-size: 13px;
+            text-align: center;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+        
+        .range-apply-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 2px 8px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        .range-apply-btn:hover {
+            background: #3b7ddf;
+        }
+        
+
+        .select-frame-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,0.5);
+            border: 2px solid white;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        .select-frame-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
+        .select-frame-btn.selected {
+            background-color: var(--accent-color);
+        }
+
+        .select-frame-btn i {
+            font-size: 14px;
+        }
+
+        /* Hiển thị ô frame hiện tại (modal) */
+        .current-frame-box {
+            position: absolute;
+            right: 18px;
+            bottom: 12px;
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            min-width: 120px;
+            text-align: center;
+            z-index: 2002; /* tăng để chắc chắn nằm trên video */
+            box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+            font-family: monospace;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main-container">
+        <div class="form-controls">
+            <form id="searchForm" method="POST" action="{{ request.scope.get('root_path', '') }}/predict" style="margin:0;">
+                
+                <!-- Row 1: Search Query Bar (full width) -->
+                <div class="search-row">
+                    <div class="search-input-wrapper">
+                        <input type="text"
+                            name="text"
+                            id="searchInput"
+                            class="search-input"
+                            placeholder="🔍 Nhập truy vấn tìm kiếm của bạn (văn bản hoặc đường dẫn ảnh)..."
+                            value="{{ query_text if query_text else '' }}"
+                            autocomplete="off"
+                            required>
+                        <button type="button" class="speech-btn" onclick="startSpeechRecognition()">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button type="button" class="lang-toggle" onclick="toggleSpeechLanguage()" title="Toggle language (VI/EN)">
+                            VI
+                        </button>
+                    </div>
+                    <button type="submit" class="btn-modern btn-primary-modern" id="submitBtn">
+                        <i class="fas fa-search"></i>
+                        Submit
+                        <div class="loading-spinner spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Row 1.5: Secondary Search Fields (OD, OCR, ASR) -->
+                <div class="secondary-search-row">
+                    <div class="search-input-wrapper small">
+                        <input type="text"
+                            id="odSearchInput"
+                            class="search-input small"
+                            placeholder="🔍 OD">
+                        <button type="button" class="speech-btn small" onclick="searchOD()" title="Search OD">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="search-input-wrapper small">
+                        <input type="text"
+                            id="ocrSearchInput"
+                            class="search-input small"
+                            placeholder="🔍 OCR">
+                        <button type="button" class="speech-btn small" onclick="searchOCR()" title="Search OCR">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="search-input-wrapper small">
+                        <input type="text"
+                            id="asrSearchInput"
+                            class="search-input small"
+                            placeholder="🔍 ASR">
+                        <button type="button" class="speech-btn small" onclick="searchASR()" title="Search ASR">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Row 2: Model Options and Settings -->
+                <div class="options-row">
+                    <div class="model-selector">
+                        <label>Model:</label>
+                        <!-- <div class="model-option">
+                            <input type="radio" name="model" id="laion" value="laion" 
+                                {% if not selected_model or selected_model == "laion" %}checked{% endif %}>
+                            <label for="laion">Laion</label>
+                        </div> -->
+                        <!-- <div class="model-option">
+                            <input type="radio" name="model" id="dfn5b" value="dfn5b"
+                                {% if selected_model == "dfn5b" %}checked{% endif %}>
+                            <label for="dfn5b">DFN5B</label>
+                        </div> -->
+                        <!-- <div class="model-option">
+                            <input type="radio" name="model" id="siglip" value="siglip"
+                                {% if selected_model == "siglip" %}checked{% endif %}>
+                            <label for="siglip">SigLIP</label>
+                        </div>  -->
+                        <!-- <div class="model-option">
+                            <input type="radio" name="model" id="jinaclipv2" value="jinaclipv2"
+                                {% if selected_model == "jinaclipv2" %}checked{% endif %}>
+                            <label for="jinaclipv2">JinaCLIPV2</label>
+                        </div> -->
+                        <!-- <div class="model-option">
+                            <input type="radio" name="model" id="metaclip" value="metaclip"
+                                {% if selected_model == "metaclip" %}checked{% endif %}>
+                            <label for="metaclip">MetaCLIP</label>
+                        </div> -->
+                        <div class="model-option">
+                            <input type="radio" name="model" id="metaclip2" value="metaclip2"
+                                {% if selected_model == "metaclip2" %}checked{% endif %}>
+                            <label for="metaclip2">MetaCLIP2</label>
+                        </div>
+                        <div class="model-option">
+                            <input type="radio" name="model" id="siglip2" value="siglip2"
+                                {% if selected_model == "siglip2" %}checked{% endif %}>
+                            <label for="siglip2">SigLIP2</label>
+                        </div>
+                        
+                        <!-- <div class="model-option">
+                            <input type="radio" name="model" id="llm2clip" value="llm2clip"
+                                {% if selected_model == "llm2clip" %}checked{% endif %}>
+                            <label for="llm2clip">LLM2CLIP</label>
+                        </div> -->
+                        <div class="model-option">
+                            <input type="radio" name="model" id="combine" value="Combine"
+                                {% if selected_model == "Combine" %}checked{% endif %}>
+                            <label for="combine">Combine</label>
+                        </div> 
+                    </div>
+                    
+                    <div class="toggle-switches">
+                        <div class="toggle-switch">
+                            <input type="checkbox" name="temporal" id="temporal" value="1"
+                                {% if temporal_checked and temporal_checked != 0 %}checked{% endif %}>
+                            <label for="temporal">Temporal</label>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" name="trans" id="translate" value="1"
+                                {% if trans_checked and trans_checked != 0 %}checked{% endif %}>
+                            <label for="translate">Translation</label>
+                        </div>
+                    </div>
+                    
+                    <div class="size-control">
+                        <label for="imageSizeSlider">Size:</label>
+                        <input type="range" id="imageSizeSlider" min="120" max="300" value="180" class="size-slider">
+                        <span id="sliderValue" class="size-display">180px</span>
+                    </div>
+                    
+                    <div class="id-badges">
+                        <div class="id-badge">
+                            Session ID: <input id="sessionIdInput" placeholder="ID">
+                        </div>
+                        <div class="id-badge">
+                            Eval ID: <input id="evalIdInput" placeholder="Token">
+                        </div>
+                    </div>
+                    
+                    <button id="submitDresBtn" type="button" class="btn-modern btn-danger-modern">
+                        <i class="fas fa-paper-plane"></i> Nộp bài
+                    </button>
+                    
+                    <span id="statusBadge" class="badge bg-secondary" style="min-width:70px;font-size:1rem;">STATUS</span> 
+                    <span id="dresStatusMsg" style="font-weight: 600;"></span>
+                </div>
+
+                <!-- Row 3: Controls and Advanced Fields -->
+                <div class="actions-row">
+                    <div class="results-control">
+                        <label>Kết quả:</label>
+                        <input type="number" id="customResultsLimit" 
+                               min="0" max="1000" value="200" 
+                               placeholder="200">
+                        <button type="button" id="applyResultsLimit" 
+                                class="btn-modern btn-primary-modern">Áp dụng</button>
+                    </div>
+                    
+                    <!-- Additional toggle buttons -->
+                    <button id="dragDropToggle" type="button" class="btn-modern btn-primary-modern" style="background-color: #8e44ad;">
+                        <i class="fas fa-file-csv"></i> Export CSV
+                    </button>
+                    
+                    <div class="advanced-fields">
+                        <div class="advanced-field">
+                            <input type="text" id="videoNameInput" placeholder="MediaItemName">
+                        </div>
+                        <div class="advanced-field">
+                            <input type="text" id="frameInput" placeholder="Frame">
+                        </div>
+                        <div class="advanced-field qa-field">
+                            <input type="text" id="qaAnswer" placeholder="QA Answer (optional)">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="results-container">
+            <!-- Results Grid -->
+            {% if files %}
+            <div class="image-grid" id="imageGrid">
+                {% for image_path, image_id, keyframe_time in files %}
+                <div class="image-card" data-video-info="{{ image_id }}" onclick="selectImage(this)">
+                <div style="position:relative;">
+                    <img src="{{ request.scope.get('root_path', '') }}{{ image_path }}" 
+                         alt="Frame {{ image_id.split(',')[-1] }}"
+                         loading="lazy">
+                    <button class="play-btn" onclick="event.stopPropagation(); playVideoFromCard(this, '{{ image_id }}');">
+                        <i class="fas fa-play" style="color:white;font-size:22px;"></i>
+                    </button>
+                    <button class="delete-frame-btn" onclick="event.stopPropagation(); deleteFrame(this, '{{ image_id }}');" title="Xóa frame">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                {# XÓA phần hiển thị thông tin dưới frame video #}
+                {# <div class="image-info">
+                    <div class="image-time">{{ image_id.split(',')[0] }}</div>
+                    <div class="image-details">
+                        <div><strong>Video:</strong> {{ image_id.split(',')[2] }}</div>
+                        <div><strong>Frame:</strong> {{ image_id.split(',')[3] }}</div>
+                    </div>
+                </div> #}
+            </div>
+            {% endfor %}
+            </div>
+            {% elif request.method == 'POST' %}
+            <div class="no-results">
+                <h5>No results found</h5>
+                <p>Try adjusting your search query or selecting a different model.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Video Preview Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 class="video-modal-title" id="videoModalTitle">Video Preview</h3>
+                <div class="frame-switch-container">
+                    <label class="frame-switch">
+                        <input type="checkbox" id="frameSwitch" checked>
+                        <span class="frame-slider"></span>
+                    </label>
+                    <span>Hiển thị frames xung quanh</span>
+                    <div class="frame-range-control" id="frameRangeControl" style="display: none;">
+                        <label for="frameRangeInput" class="range-label">Số frame:</label>
+                        <input type="number" id="frameRangeInput" min="1" max="200" value="100" class="frame-range-input">
+                        <button onclick="updateFrameRange()" class="range-apply-btn">Áp dụng</button>
+                        
+                        <div class="frame-size-control">
+                            <label for="frameSizeSlider" class="size-label">Kích thước:</label>
+                            <input type="range" id="frameSizeSlider" min="50" max="150" value="100" class="frame-size-slider">
+                            <span id="frameSizeValue">100%</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="video-close" onclick="closeVideoModal()">&times;</button>
+            </div>
+            <div class="video-modal-body">
+                <div class="video-loading" id="videoLoading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Loading video...</p>
+                </div>
+                <div class="video-error" id="videoError">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Error loading video. Please try again.</p>
+                </div>
+                <video id="videoPlayer" class="video-player" controls style="display: none;">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info" id="videoInfo" style="display: none;margin:0;padding:5px;">
+                <div class="video-info-row">
+                    <span class="video-info-label">Video:</span>
+                    <span class="video-info-value" id="videoInfoName">-</span>
+                </div>
+                <div class="video-info-row">
+                    <span class="video-info-label">Frame:</span>
+                    <span class="video-info-value" id="videoInfoFrame">-</span>
+                </div>
+                <div class="video-info-row" style="display:flex; align-items:center; gap:8px;">
+                    <span class="video-info-label">Timestamp:</span>
+                    <span class="video-info-value" id="videoInfoTime">-</span>
+                </div>
+                <div class="video-info-row" style="display:flex; align-items:center; gap:8px;">
+                    <span class="video-info-label">Add Frames:</span>
+                    <input type="text" id="addFrameInput1" class="form-control" style="width: 80px;">
+                    <input type="text" id="addFrameInput2" class="form-control" style="width: 80px;">
+                    <input type="text" id="addFrameInput3" class="form-control" style="width: 80px;">
+                    <input type="text" id="addFrameInput4" class="form-control" style="width: 80px;">
+                    <button id="addFrameBtn" class="btn btn-primary" style="height: 30px; padding: 0 10px;">Add</button>
+            <!-- <button id="sortFrameBtn" class="btn btn-secondary" style="height: 30px; padding: 0 10px; margin-left: 5px;">Sort</button> -->
+            <button id="submitTrakeBtnModal" class="btn btn-success" style="height: 30px; padding: 0 10px; margin-left: 5px;">
+                <i class="fas fa-paper-plane"></i> Submit TRAKE
+            </button>
+        </div>
+        <div class="video-info-row">
+            <span class="video-info-label">Video URL:</span>
+            <span class="video-info-value" id="videoInfoUrl">-</span>
+        </div>
+        <div id="currentFrameBox" class="current-frame-box" style="display:none;">
+            <div class="cf-label">Current Frame</div>
+            <div class="cf-value" id="currentFrameValue">-</div>
+        </div>
+        </div>
+
+                <!-- Ô hiển thị frame hiện tại (auto-update khi video chạy) -->
+                
+                <div class="frames-container" id="framesContainer" style="margin-top:0;">
+                    <!-- Frames xung quanh sẽ được hiển thị ở đây -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Global variables for video modal
+        const ROOT_PATH = "{{ request.scope.get('root_path', '') }}";
+        let currentVideoData = null;
+        let targetTimestamp = 0;
+        let surroundingFrames = []; // Lưu trữ thông tin về các frame xung quanh
+        // Throttle navigation to avoid double-jump from multiple handlers
+        let lastFrameNavTime = 0;
+        
+        // Variables for continuous navigation
+        let navInterval = null;
+        let isNavigating = false;
+
+        // Speech Recognition Variables
+        let recognition = null;
+        let isRecording = false;
+        let speechTimeout = null;
+
+        // Language selection (optional enhancement)
+        function setSpeechLanguage(lang) {
+            if (recognition) {
+                recognition.lang = lang;
+                console.log('🎤 Speech language set to:', lang);
+                
+                // Update button display
+                const langBtn = document.querySelector('.lang-toggle');
+                if (langBtn) {
+                    langBtn.textContent = lang.startsWith('vi') ? 'VI' : 'EN';
+                    langBtn.title = `Current: ${lang} (Click to toggle)`;
+                }
+            }
+        }
+
+        // Toggle between Vietnamese and English
+        function toggleSpeechLanguage() {
+            if (!recognition) return;
+            
+            const currentLang = recognition.lang;
+            let newLang = 'vi-VN';
+            
+            if (currentLang === 'vi-VN') {
+                newLang = 'en-US';
+            } else {
+                newLang = 'vi-VN';
+            }
+            
+            setSpeechLanguage(newLang);
+            
+            // Show feedback
+            const langName = newLang === 'vi-VN' ? 'Tiếng Việt' : 'English';
+            showSpeechStatus(`Language: ${langName}`, true);
+            setTimeout(() => showSpeechStatus('', false), 2000);
+        }
+
+        // Enhanced language detection with Vietnamese default
+        function detectAndSetLanguage() {
+            // Auto-detect browser language but default to Vietnamese
+            const userLang = navigator.language || navigator.userLanguage;
+            let speechLang = 'vi-VN'; // Default to Vietnamese
+            
+            // Only switch to English if explicitly English browser
+            if (userLang.startsWith('en')) {
+                speechLang = 'en-US';
+            } else if (userLang.startsWith('vi')) {
+                speechLang = 'vi-VN';
+            } else if (userLang.startsWith('zh')) {
+                speechLang = 'zh-CN';
+            } else if (userLang.startsWith('ja')) {
+                speechLang = 'ja-JP';
+            } else if (userLang.startsWith('ko')) {
+                speechLang = 'ko-KR';
+            }
+            // If no match found, keep default Vietnamese
+            
+            if (recognition) {
+                recognition.lang = speechLang;
+                console.log('🌐 Speech language set to:', speechLang);
+            }
+            
+            // Update language button
+            setSpeechLanguage(speechLang);
+            
+            return speechLang;
+        }
+
+        // Enhanced speech recognition initialization
+        function initSpeechRecognition() {
+            if ('webkitSpeechRecognition' in window) {
+                recognition = new webkitSpeechRecognition();
+            } else if ('SpeechRecognition' in window) {
+                recognition = new SpeechRecognition();
+            } else {
+                console.log('Speech recognition not supported');
+                // Hide speech button if not supported
+                const speechBtn = document.querySelector('.speech-btn');
+                if (speechBtn) {
+                    speechBtn.style.display = 'none';
+                }
+                return false;
+            }
+
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 3;
+            
+            // Auto-detect language
+            const detectedLang = detectAndSetLanguage();
+
+            recognition.onstart = function() {
+                isRecording = true;
+                updateSpeechButton('recording');
+                const langName = recognition.lang === 'vi-VN' ? 'Tiếng Việt' : recognition.lang;
+                showSpeechStatus(`Đang nghe (${langName})...`, true);
+                console.log('🎤 Speech recognition started');
+                
+                // Hide search history while recording
+                document.getElementById('searchHistory').style.display = 'none';
+            };
+
+            recognition.onresult = function(event) {
+                let transcript = '';
+                let finalTranscript = '';
+                let confidence = 0;
+                
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                        confidence = event.results[i][0].confidence;
+                    }
+                }
+
+                const searchInput = document.getElementById('searchInput');
+                
+                if (finalTranscript) {
+                    const cleanTranscript = finalTranscript.trim();
+                    searchInput.value = cleanTranscript;
+                    
+                    // Save to search history if confident
+                    if (confidence > 0.7) {
+                        saveSearchHistory(cleanTranscript);
+                    }
+                    
+                    console.log('🎤 Final transcript:', cleanTranscript, 'Confidence:', confidence);
+                    const isVietnamese = recognition.lang === 'vi-VN';
+                    const message = isVietnamese ? 
+                        `Đã nhận diện! (${Math.round(confidence * 100)}%)` : 
+                        `Speech recognized! (${Math.round(confidence * 100)}%)`;
+                    showSpeechStatus(message, true);
+                    setTimeout(() => showSpeechStatus('', false), 2000);
+                } else {
+                    // Show interim results
+                    searchInput.value = transcript.trim();
+                    const isVietnamese = recognition.lang === 'vi-VN';
+                    const message = isVietnamese ? 'Đang nghe...' : 'Listening...';
+                    showSpeechStatus(message, true);
+                }
+            };
+
+            recognition.onerror = function(event) {
+                console.error('🎤 Speech recognition error:', event.error);
+                isRecording = false;
+                updateSpeechButton('idle');
+                
+                const isVietnamese = recognition.lang === 'vi-VN';
+                let errorMessage = isVietnamese ? 'Lỗi nhận diện giọng nói' : 'Speech recognition failed';
+                
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMessage = isVietnamese ? 
+                            'Không phát hiện giọng nói. Hãy nói gần micro hơn.' : 
+                            'No speech detected. Try speaking closer to the microphone.';
+                        break;
+                    case 'audio-capture':
+                        errorMessage = isVietnamese ? 
+                            'Không thể truy cập micro. Kiểm tra cài đặt âm thanh.' : 
+                            'Microphone not accessible. Check your audio settings.';
+                        break;
+                    case 'not-allowed':
+                        errorMessage = isVietnamese ? 
+                            'Quyền truy cập micro bị từ chối. Vui lòng cho phép truy cập micro.' : 
+                            'Microphone permission denied. Please allow microphone access.';
+                        break;
+                    case 'network':
+                        errorMessage = isVietnamese ? 
+                            'Lỗi mạng. Kiểm tra kết nối internet.' : 
+                            'Network error. Check your internet connection.';
+                        break;
+                    case 'service-not-allowed':
+                        errorMessage = isVietnamese ? 
+                            'Dịch vụ không được phép. Thử tải lại trang.' : 
+                            'Speech service not allowed. Try refreshing the page.';
+                        break;
+                }
+                
+                showSpeechStatus(errorMessage, true);
+                setTimeout(() => showSpeechStatus('', false), 4000);
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                updateSpeechButton('idle');
+                setTimeout(() => showSpeechStatus('', false), 1000);
+                console.log('🎤 Speech recognition ended');
+            };
+
+            return true;
+        }
+
+        function startSpeechRecognition() {
+            if (!recognition) {
+                if (!initSpeechRecognition()) {
+                    alert('Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.');
+                    return;
+                }
+            }
+
+            if (isRecording) {
+                // Stop recording
+                recognition.stop();
+                return;
+            }
+
+            // Check microphone permission
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(function(stream) {
+                        // Permission granted, start recognition
+                        stream.getTracks().forEach(track => track.stop()); // Stop the stream
+                        recognition.start();
+                    })
+                    .catch(function(err) {
+                        console.error('Microphone permission denied:', err);
+                        showSpeechStatus('Microphone access denied', true);
+                        setTimeout(() => showSpeechStatus('', false), 3000);
+                    });
+            } else {
+                // Fallback for older browsers
+                recognition.start();
+            }
+        }
+
+        function updateSpeechButton(state) {
+            const speechBtn = document.querySelector('.speech-btn');
+            const icon = speechBtn.querySelector('i');
+            
+            speechBtn.className = 'speech-btn';
+            
+            switch(state) {
+                case 'recording':
+                    speechBtn.classList.add('recording');
+                    icon.className = 'fas fa-microphone-slash';
+                    speechBtn.title = 'Click to stop recording';
+                    break;
+                case 'processing':
+                    speechBtn.classList.add('processing');
+                    icon.className = 'fas fa-spinner fa-spin';
+                    speechBtn.title = 'Processing speech...';
+                    break;
+                case 'idle':
+                default:
+                    icon.className = 'fas fa-microphone';
+                    speechBtn.title = 'Click to start voice input';
+                    break;
+            }
+        }
+
+        function showSpeechStatus(message, show) {
+            const statusElement = document.getElementById('speechStatus');
+            statusElement.textContent = message;
+            
+            if (show) {
+                statusElement.classList.add('show');
+            } else {
+                statusElement.classList.remove('show');
+            }
+        }
+
+        // Search History Management
+        const MAX_HISTORY_ITEMS = 10;
+        
+        function getSearchHistory() {
+            const history = localStorage.getItem('searchHistory');
+            return history ? JSON.parse(history) : [];
+        }
+        
+        function saveSearchHistory(query) {
+            if (!query || query.trim() === '') return;
+            
+            let history = getSearchHistory();
+            
+            // Remove if already exists
+            history = history.filter(item => item !== query.trim());
+            
+            // Add to beginning
+            history.unshift(query.trim());
+            
+            // Limit to MAX_HISTORY_ITEMS
+            if (history.length > MAX_HISTORY_ITEMS) {
+                history = history.slice(0, MAX_HISTORY_ITEMS);
+            }
+            
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+        }
+        
+        function deleteSearchHistoryItem(query) {
+            let history = getSearchHistory();
+            history = history.filter(item => item !== query);
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+            displaySearchHistory();
+        }
+        
+        function clearSearchHistory() {
+            localStorage.removeItem('searchHistory');
+            displaySearchHistory();
+        }
+        
+        function displaySearchHistory() {
+            const history = getSearchHistory();
+            const historyContainer = document.getElementById('searchHistory');
+            
+            if (history.length === 0) {
+                historyContainer.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            history.forEach(query => {
+                html += `
+                    <div class="search-history-item" onclick="selectHistoryItem('${query.replace(/'/g, "\\'")}')">
+                        <span class="search-history-text">${query}</span>
+                        <span class="search-history-delete" onclick="event.stopPropagation(); deleteSearchHistoryItem('${query.replace(/'/g, "\\'")}')">×</span>
+                    </div>
+                `;
+            });
+            
+            if (history.length > 0) {
+                html += `<div class="search-history-clear" onclick="clearSearchHistory()">Clear All History</div>`;
+            }
+            
+            historyContainer.innerHTML = html;
+            historyContainer.style.display = 'block';
+        }
+        
+        function selectHistoryItem(query) {
+            document.getElementById('searchInput').value = query;
+            document.getElementById('searchHistory').style.display = 'none';
+        }
+
+        function hideSearchHistory() {
+            setTimeout(() => {
+                document.getElementById('searchHistory').style.display = 'none';
+            }, 200); // Delay to allow clicking on history items
+        }
+
+        function cleanDuplicateText(text) {
+            if (!text) return text;
+            
+            // Remove common duplicate patterns
+            let cleaned = text.trim();
+            
+            // Pattern 1: "word word word" -> "word"
+            const words = cleaned.split(/\s+/);
+            if (words.length > 1) {
+                const firstWord = words[0];
+                if (words.every(word => word === firstWord)) {
+                    cleaned = firstWord;
+                }
+            }
+            
+            // Pattern 2: "text, text, text" -> "text"
+            const commaParts = cleaned.split(',').map(s => s.trim());
+            if (commaParts.length > 1 && commaParts.every(part => part === commaParts[0])) {
+                cleaned = commaParts[0];
+            }
+            
+            // Pattern 3: Remove repeated phrases
+            const phrases = cleaned.split(/[,;]\s*/);
+            if (phrases.length > 1) {
+                const uniquePhrases = [...new Set(phrases)];
+                if (uniquePhrases.length < phrases.length) {
+                    cleaned = uniquePhrases[0];
+                }
+            }
+            
+            return cleaned;
+        }
+
+        // Form submission handler
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            // Lấy giá trị số lượng kết quả
+            const resultsLimit = document.getElementById('customResultsLimit').value || 200;
+            localStorage.setItem('resultsLimit', resultsLimit);
+
+            // Thêm input hidden cho results_limit
+            let limitInput = document.getElementById('resultsLimitInput');
+            if (!limitInput) {
+                limitInput = document.createElement('input');
+                limitInput.type = 'hidden';
+                limitInput.id = 'resultsLimitInput';
+                limitInput.name = 'results_limit';
+                this.appendChild(limitInput);
+            }
+            limitInput.value = resultsLimit;
+        });
+
+        // Search input event handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchHistory = document.getElementById('searchHistory');
+            
+            // Initialize speech recognition
+            initSpeechRecognition();
+            
+            // Clean any potential duplicate values - ensure clean state
+            const currentValue = searchInput.value;
+            if (currentValue) {
+                const cleanValue = cleanDuplicateText(currentValue);
+                if (cleanValue !== currentValue) {
+                    searchInput.value = cleanValue;
+                    console.log('🧹 Cleaned duplicate query:', currentValue, '→', cleanValue);
+                }
+            }
+            
+            // Show history on focus
+            searchInput.addEventListener('focus', function() {
+                displaySearchHistory();
+            });
+            
+            // Hide history on blur (with delay for clicking)
+            searchInput.addEventListener('blur', hideSearchHistory);
+            
+            // Filter history on input
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query === '') {
+                    displaySearchHistory();
+                    return;
+                }
+                
+                const history = getSearchHistory();
+                const filtered = history.filter(item => 
+                    item.toLowerCase().includes(query)
+                );
+                
+                if (filtered.length === 0) {
+                    searchHistory.style.display = 'none';
+                    return;
+                }
+                
+                let html = '';
+                filtered.forEach(item => {
+                    html += `
+                        <div class="search-history-item" onclick="selectHistoryItem('${item.replace(/'/g, "\\'")}')">
+                            <span class="search-history-text">${item}</span>
+                            <span class="search-history-delete" onclick="event.stopPropagation(); deleteSearchHistoryItem('${item.replace(/'/g, "\\'")}')">×</span>
+                        </div>
+                    `;
+                });
+                
+                searchHistory.innerHTML = html;
+                searchHistory.style.display = 'block';
+            });
+            
+            // Handle keyboard navigation
+            searchInput.addEventListener('keydown', function(e) {
+                const historyItems = document.querySelectorAll('.search-history-item');
+                if (historyItems.length === 0) return;
+                
+                let currentIndex = -1;
+                historyItems.forEach((item, index) => {
+                    if (item.classList.contains('selected')) {
+                        currentIndex = index;
+                    }
+                });
+                
+                // Only handle ArrowUp and ArrowDown for history navigation
+                // Allow ArrowLeft and ArrowRight for normal text cursor movement
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (currentIndex < historyItems.length - 1) {
+                        if (currentIndex >= 0) {
+                            historyItems[currentIndex].classList.remove('selected');
+                        }
+                        historyItems[currentIndex + 1].classList.add('selected');
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (currentIndex > 0) {
+                        historyItems[currentIndex].classList.remove('selected');
+                        historyItems[currentIndex - 1].classList.add('selected');
+                    }
+                } else if (e.key === 'Enter' && currentIndex >= 0) {
+                    e.preventDefault();
+                    const selectedText = historyItems[currentIndex].querySelector('.search-history-text').textContent;
+                    selectHistoryItem(selectedText);
+                } else if (e.key === 'Escape') {
+                    searchHistory.style.display = 'none';
+                }
+                // Note: ArrowLeft and ArrowRight are not handled here, allowing normal text cursor movement
+            });
+            // Khôi phục giá trị từ localStorage
+            const savedResultsLimit = localStorage.getItem('resultsLimit');
+            if (savedResultsLimit) {
+                document.getElementById('customResultsLimit').value = savedResultsLimit;
+            }
+
+            // Xử lý sự kiện khi nhấn nút áp dụng
+            document.getElementById('applyResultsLimit').addEventListener('click', function() {
+                const resultsLimit = document.getElementById('customResultsLimit').value || 200;
+                console.log('Applying new limit:', resultsLimit);
+                // Lưu vào localStorage
+                localStorage.setItem('resultsLimit', resultsLimit);
+
+                // Kiểm tra nếu có query trong ô tìm kiếm
+                const query = document.getElementById('searchInput').value.trim();
+                if (query) {
+                    // Lấy trạng thái các tùy chọn tìm kiếm
+                    const selectedModel = getSelectedModel();
+                    const translateChecked = document.getElementById('translate')?.checked || false;
+                    const temporalChecked = document.getElementById('temporal')?.checked || false;
+
+                    // Tạo form submit mới
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = ROOT_PATH + '/predict';
+
+                    // Thêm các input hidden
+                    const formInputs = [
+                        {name: 'text', value: query},
+                        {name: 'model', value: selectedModel},
+                        {name: 'trans', value: translateChecked ? 1 : 0},
+                        {name: 'temporal', value: temporalChecked ? 1 : 0},
+                        {name: 'results_limit', value: resultsLimit}
+                    ];
+
+                    formInputs.forEach(input => {
+                        const inputElement = document.createElement('input');
+                        inputElement.type = 'hidden';
+                        inputElement.name = input.name;
+                        inputElement.value = input.value;
+                        form.appendChild(inputElement);
+                    });
+
+                    // Thêm form vào document và submit
+                    document.body.appendChild(form);
+                    form.submit();
+                } else {
+                    // Nếu không có query, chỉ lưu giá trị và thông báo
+                    alert('Đã lưu số lượng kết quả: ' + resultsLimit);
+                }
+            });
+        });
+
+        // Thêm hàm để lấy model đã chọn
+        function getSelectedModel() {
+            const modelRadios = document.querySelectorAll('input[name="model"]');
+            for (const radio of modelRadios) {
+                if (radio.checked) {
+                    return radio.value;
+                }
+            }
+            return 'laion'; // default model
+        }
+        // Close history when clicking outside
+        document.addEventListener('click', function(e) {
+            const searchContainer = document.querySelector('.search-container');
+            if (!searchContainer.contains(e.target)) {
+                document.getElementById('searchHistory').style.display = 'none';
+            }
+        });
+
+        // Image size slider
+        const imageSizeSlider = document.getElementById('imageSizeSlider');
+        const sliderValue = document.getElementById('sliderValue');
+        const imageGrid = document.getElementById('imageGrid');
+
+        if (imageSizeSlider) {
+            imageSizeSlider.addEventListener('input', function() {
+                const size = this.value;
+                sliderValue.textContent = size + 'px';
+                
+                if (imageGrid) {
+                    imageGrid.style.gridTemplateColumns = `repeat(auto-fill, minmax(${size}px, 1fr))`;
+                    
+                    const images = imageGrid.querySelectorAll('img');
+                    images.forEach(img => {
+                        const ratio = size / 180; // base size is 180px
+                        img.style.height = Math.floor(120 * ratio) + 'px';
+                    });
+                }
+            });
+        }
+
+        // Select image function - Updated to open video modal
+        function selectImage(card) {
+            // Remove previous selection
+            document.querySelectorAll('.image-card').forEach(c => {
+                c.style.border = '1px solid var(--border-color)';
+            });
+            
+            // Highlight selected card
+            card.style.border = '2px solid var(--primary-color)';
+            
+            const videoInfo = card.dataset.videoInfo;
+            const parts = videoInfo.split(',');
+            const timeStr = parts[0]; // e.g., "01:23"
+            const videoName = parts[2];
+            const frameId = parts[3];
+            
+            // Fill input fields
+            document.getElementById('videoNameInput').value = videoName;
+            document.getElementById('frameInput').value = frameId;
+            
+            // Calculate timestamp in seconds
+            const timeParts = timeStr.split(':');
+            const timestamp = parseInt(timeParts[0]) * 60 + parseInt(timeParts[1]);
+            
+            // Store video data and open modal
+            currentVideoData = {
+                videoName: videoName,
+                frameId: frameId,
+                timestamp: timestamp,
+                timeStr: timeStr,
+                fps: 25  // Default FPS, will be updated with real FPS from server
+            };
+            
+            // Fetch real FPS from server
+            fetch(`${ROOT_PATH}/api/video_fps?video_name=${videoName}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.fps) {
+                        currentVideoData.fps = data.fps;
+                        console.log(`Updated FPS for ${videoName}: ${data.fps}`);
+                    }
+                })
+                .catch(error => {
+                    console.warn('Failed to fetch FPS, using default:', error);
+                });
+            
+            openVideoModal();
+            
+            console.log('Selected video:', videoName, 'Frame:', frameId, 'Time:', timeStr);
+        }
+
+        // Video Modal Functions
+        function openVideoModal() {
+            if (!currentVideoData) return;
+            
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            const loading = document.getElementById('videoLoading');
+            const error = document.getElementById('videoError');
+            const info = document.getElementById('videoInfo');
+            const controls = null; // Đã xóa videoControls nên đặt thành null
+            const source = document.getElementById('videoSource');
+            const framesContainer = document.getElementById('framesContainer');
+            const frameSwitch = document.getElementById('frameSwitch');
+            const frameRangeControl = document.getElementById('frameRangeControl');
+            
+            // Show modal and loading
+            modal.style.display = 'block';
+            loading.style.display = 'block';
+            error.style.display = 'none';
+            if (controls) controls.style.display = 'none';
+            framesContainer.style.display = 'none';
+            
+            // Set modal title
+            document.getElementById('videoModalTitle').textContent = `${currentVideoData.videoName} ${currentVideoData.frameId}`;
+            
+            // Update info
+            document.getElementById('videoInfoName').textContent = currentVideoData.videoName;
+            document.getElementById('videoInfoFrame').textContent = currentVideoData.frameId;
+            document.getElementById('videoInfoTime').textContent = currentVideoData.timeStr;
+            
+            // Set video source
+            const videoUrl = `${ROOT_PATH}/video/${currentVideoData.videoName}.mp4`;
+            source.src = videoUrl;
+            document.getElementById('videoInfoUrl').textContent = videoUrl;
+            
+            targetTimestamp = currentVideoData.timestamp;
+            
+            // Load video trước để chuẩn bị
+            player.load();
+            
+            // Handle video events
+            player.onloadeddata = function() {
+                loading.style.display = 'none';
+                if (controls) controls.style.display = 'flex';
+                
+                // Seek to timestamp
+                player.currentTime = targetTimestamp;
+                
+                // Update time display
+                updateTimeDisplay();
+                
+                // Kiểm tra trạng thái nút gạt sau khi video đã load
+                if (frameSwitch.checked) {
+                    // Nếu nút gạt đã bật, hiển thị frames xung quanh
+                    player.style.display = 'none';
+                    info.style.display = 'none';
+                    frameRangeControl.style.display = 'flex';
+                    loadSurroundingFrames();
+                } else {
+                    // Ngược lại, hiển thị video player
+                    player.style.display = 'block';
+                    info.style.display = 'block';
+                    frameRangeControl.style.display = 'none';
+                }
+            };
+            
+            player.onerror = function() {
+                loading.style.display = 'none';
+                error.style.display = 'block';
+            };
+            
+            // Time update handler
+            player.ontimeupdate = function() {
+                updateTimeDisplay();
+            };
+        }
+
+        // Function to show keyboard shortcut notifications
+        function showKeyboardShortcut(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 10px 15px;
+                border-radius: 5px;
+                font-size: 14px;
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Fade in
+            setTimeout(() => {
+                notification.style.opacity = '1';
+            }, 10);
+            
+            // Fade out and remove
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 2000);
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            const frameRangeControl = document.getElementById('frameRangeControl');
+            const framesContainer = document.getElementById('framesContainer');
+            const frameSwitch = document.getElementById('frameSwitch');
+            
+            // Hide modal
+            modal.style.display = 'none';
+            
+            // Stop video
+            if (player) {
+                player.pause();
+                player.currentTime = 0;
+            }
+            
+            // Reset frame switch
+            if (frameSwitch) {
+                frameSwitch.checked = false;
+            }
+            
+            // Reset frames container
+            if (framesContainer) {
+                framesContainer.style.display = 'none';
+                framesContainer.innerHTML = '';
+            }
+            
+            // Show video player and info
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoInfo = document.getElementById('videoInfo');
+            if (videoPlayer) videoPlayer.style.display = 'block';
+            if (videoInfo) videoInfo.style.display = 'block';
+            
+            // Ẩn điều khiển range
+            if (frameRangeControl) {
+                frameRangeControl.style.display = 'none';
+            }
+            
+            // Reset giá trị range về mặc định
+            const frameRangeInput = document.getElementById('frameRangeInput');
+            if (frameRangeInput) {
+                frameRangeInput.value = 100;
+            }
+            
+            // Reset giá trị kích thước frame về mặc định
+            const frameSizeSlider = document.getElementById('frameSizeSlider');
+            const frameSizeValue = document.getElementById('frameSizeValue');
+            if (frameSizeSlider) frameSizeSlider.value = 100;
+            if (frameSizeValue) frameSizeValue.textContent = '100%';
+            
+            // Stop continuous navigation
+            if (navInterval) {
+                clearInterval(navInterval);
+                navInterval = null;
+            }
+            isNavigating = false;
+            
+            // Reset data
+            currentVideoData = null;
+            window.surroundingFrames = []; // Xóa dữ liệu frames xung quanh
+        }
+
+        function replayFromTimestamp() {
+            const player = document.getElementById('videoPlayer');
+            if (player && targetTimestamp !== undefined) {
+                player.currentTime = targetTimestamp;
+                player.play();
+            }
+        }
+
+        function skipBackward() {
+            const player = document.getElementById('videoPlayer');
+            if (player) {
+                player.currentTime = Math.max(0, player.currentTime - 10);
+            }
+        }
+
+        function skipForward() {
+            const player = document.getElementById('videoPlayer');
+            if (player) {
+                player.currentTime = Math.min(player.duration, player.currentTime + 10);
+            }
+        }
+
+        function updateTimeDisplay() {
+            const player = document.getElementById('videoPlayer');
+            const timeDisplay = document.getElementById('timeDisplay');
+
+            if (player && timeDisplay) {
+                const current = formatTime(player.currentTime || 0);
+                const duration = formatTime(player.duration || 0);
+                timeDisplay.textContent = `${current} / ${duration}`;
+            }
+
+            // Cập nhật ô frame hiện tại (hiện thị khi modal đang mở và video player visible)
+            try {
+                const currentFrameBox = document.getElementById('currentFrameBox');
+                const currentFrameValue = document.getElementById('currentFrameValue');
+                const frameSwitch = document.getElementById('frameSwitch');
+
+                // Nếu chưa có dữ liệu video hoặc đang hiển thị frames gallery thì ẩn ô
+                if (!currentVideoData || !player) {
+                    if (currentFrameBox) currentFrameBox.style.display = 'none';
+                    return;
+                }
+                // Ẩn currentFrameBox khi bật nút gạt frames xung quanh
+                if (frameSwitch && frameSwitch.checked) {
+                    if (currentFrameBox) currentFrameBox.style.display = 'none';
+                    return;
+                }
+
+                // Nếu chưa có thởi gian hợp lệ thì ẩn
+                if (isNaN(player.currentTime)) {
+                    if (currentFrameBox) currentFrameBox.style.display = 'none';
+                    return;
+                }
+
+                // Tính frame chính xác dựa trên thời gian hiện tại của video player
+                // Sử dụng FPS thực tế để tính frame từ thời gian video
+                const fps = currentVideoData.fps || 25;
+                
+                // Tính frame hiện tại trực tiếp từ thời gian video player
+                const currentFrame = Math.round(player.currentTime * fps);
+                
+                // Đảm bảo frame không âm
+                const calcFrame = Math.max(0, currentFrame);
+
+                if (currentFrameValue) currentFrameValue.textContent = calcFrame;
+                if (currentFrameBox) currentFrameBox.style.display = 'block';
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '00:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeVideoModal();
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + Enter to submit search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                document.getElementById('searchForm').submit();
+            }
+            
+            // Ctrl/Cmd + M to start voice input
+            if ((e.ctrlKey || e.metaKey) && e.key === 'm') {
+                e.preventDefault();
+                startSpeechRecognition();
+            }
+            
+            // Esc to clear search, close modal, or stop voice recording
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('videoModal');
+                const framesContainer = document.getElementById('framesContainer');
+                const frameSwitch = document.getElementById('frameSwitch');
+                
+                // Nếu modal video đang mở
+                if (modal && modal.style.display === 'block') {
+                    // Nếu đang ở chế độ xem frames, chuyển về video
+                    if (framesContainer && framesContainer.style.display === 'block') {
+                        frameSwitch.checked = false;
+                        framesContainer.style.display = 'none';
+                        document.getElementById('videoPlayer').style.display = 'block';
+                        document.getElementById('videoInfo').style.display = 'block';
+                        document.getElementById('frameRangeControl').style.display = 'none';
+                    } else {
+                        // Đóng hoàn toàn modal
+                        closeVideoModal();
+                    }
+                } else if (isRecording) {
+                    // Dừng ghi âm
+                    recognition.stop();
+                } else {
+                    // Xóa search input
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('searchInput').focus();
+                }
+            }
+            
+            // Space to play/pause video when modal is open
+            if (e.key === ' ' || e.key === 'Spacebar') {
+                const modal = document.getElementById('videoModal');
+                if (modal && modal.style.display === 'block') {
+                    e.preventDefault();
+                    const player = document.getElementById('videoPlayer');
+                    if (player && !player.paused) {
+                        player.pause();
+                    } else if (player) {
+                        player.play();
+                    }
+                }
+            }
+            
+            // F key to toggle frame viewer when video modal is open
+            if (e.key === 'f' || e.key === 'F') {
+                const modal = document.getElementById('videoModal');
+                const frameSwitch = document.getElementById('frameSwitch');
+                if (modal && modal.style.display === 'block' && frameSwitch) {
+                    e.preventDefault();
+                    frameSwitch.checked = !frameSwitch.checked;
+                    frameSwitch.dispatchEvent(new Event('change'));
+                    
+                    // Show brief notification
+                    showKeyboardShortcut('Frame viewer toggled');
+                }
+            }
+            
+            // Arrow keys for frame navigation when in frame viewer mode
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                const target = e.target;
+                const isTyping = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+                
+                // Only handle arrow keys for frame navigation if user is not typing
+                if (!isTyping) {
+                    const modal = document.getElementById('videoModal');
+                    const framesContainer = document.getElementById('framesContainer');
+                    if (modal && modal.style.display === 'block' && framesContainer && framesContainer.style.display === 'block') {
+                        e.preventDefault();
+                        // Navigate frames (implement frame navigation logic here if needed)
+                        console.log('Frame navigation:', e.key);
+                    }
+                }
+            }
+
+            // P to submit DRES (Nộp bài)
+            if (!e.ctrlKey && !e.metaKey && !e.altKey && (e.key === 'p' || e.key === 'P')) {
+                const target = e.target;
+                const isTyping = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+                if (!isTyping) {
+                    e.preventDefault();
+                    const btn = document.getElementById('submitDresBtn');
+                    if (btn) btn.click();
+                }
+            }
+        });
+
+        // Focus search input on page load
+        window.addEventListener('load', function() {
+            document.getElementById('searchInput').focus();
+            
+            // Khôi phục giá trị Session ID và Eval ID từ localStorage
+            const savedSessionId = localStorage.getItem('sessionId');
+            const savedEvalId = localStorage.getItem('evalId');
+            if (savedSessionId) document.getElementById('sessionIdInput').value = savedSessionId;
+            if (savedEvalId) document.getElementById('evalIdInput').value = savedEvalId;
+            
+            // Tự động lưu Session ID và Eval ID khi thay đổi
+            const sessionIdInput = document.getElementById('sessionIdInput');
+            const evalIdInput = document.getElementById('evalIdInput');
+            
+            sessionIdInput.addEventListener('input', function() {
+                localStorage.setItem('sessionId', this.value.trim());
+                console.log('💾 Saved Session ID:', this.value.trim());
+            });
+            
+            evalIdInput.addEventListener('input', function() {
+                localStorage.setItem('evalId', this.value.trim());
+                console.log('💾 Saved Eval ID:', this.value.trim());
+            });
+            
+                       
+            // Debug: Log current radio button states
+           
+            console.log('🐛 DEBUG - Radio button states after page load:');
+            const radios = document.querySelectorAll('input[name="model"]');
+            radios.forEach(radio => {
+                console.log(`   ${radio.value}: ${radio.checked ? 'CHECKED' : 'unchecked'}`);
+            });
+            
+            // Debug: Log template variable (if available)
+            const debugElement = document.querySelector("#selected_model");
+
+            if (debugElement) {
+                console.log('🐛 DEBUG - Template variable found in comment');
+            }
+        });
+
+        // Drawer logic (mini popup)
+        // XÓA sự kiện tự động đóng popup khi click ra ngoài
+        // window.addEventListener('mousedown', function(e) {
+        //     if (drawer.style.right === '24px' && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+        //         closeDrawer();
+        //     }
+        // });
+        // Nộp bài DRES - Auto-detect KIS vs QA
+        const submitDresBtn = document.getElementById('submitDresBtn');
+        const statusBadge = document.getElementById('statusBadge');
+        submitDresBtn.onclick = async function() {
+            const sessionId = document.getElementById('sessionIdInput').value.trim();
+            const evalId = document.getElementById('evalIdInput').value.trim();
+            const mediaItem = document.getElementById('videoNameInput').value.trim();
+            const frame = document.getElementById('frameInput').value.trim();
+            const qa = document.getElementById('qaAnswer').value.trim();
+            
+            if (!sessionId || !evalId || !mediaItem || !frame) {
+                statusBadge.className = 'badge bg-warning';
+                statusBadge.textContent = 'Thiếu thông tin';
+                return;
+            }
+            
+            // Auto-detect: nếu có QA answer → QA, không có → KIS
+            const submissionType = qa ? 'QA' : 'KIS';
+            console.log(`🎯 Auto-detected submission type: ${submissionType}`);
+            
+            statusBadge.className = 'badge bg-secondary';
+            statusBadge.textContent = `Đang nộp ${submissionType}...`;
+            
+            try {
+                const res = await fetch(`${ROOT_PATH}/submit_dres`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        session_id: sessionId, 
+                        evaluation_id: evalId, 
+                        mediaitem: mediaItem, 
+                        frame: frame, 
+                        qa: qa,
+                        submission_type: submissionType
+                    })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    statusBadge.className = 'badge bg-success';
+                    statusBadge.textContent = `✓ ${submissionType} Đúng`;
+                } else if (data.status === 'fail') {
+                    statusBadge.className = 'badge bg-danger';
+                    statusBadge.textContent = `✗ ${submissionType} Sai`;
+                } else {
+                    // Xử lý lỗi chi tiết
+                    const errorMsg = data.msg || 'Lỗi';
+                    statusBadge.className = 'badge bg-warning';
+                    
+                    // Kiểm tra lỗi duplicate submission (412)
+                    if (errorMsg.includes('Duplicate submission') || errorMsg.includes('412')) {
+                        statusBadge.textContent = '⚠ Đã nộp rồi';
+                        statusBadge.title = 'Submission trùng lặp - DRES đã nhận câu trả lời này';
+                        console.warn('Duplicate submission detected');
+                    } else if (errorMsg.includes('404')) {
+                        statusBadge.textContent = '⚠ Không tìm thấy';
+                        statusBadge.title = errorMsg;
+                    } else if (errorMsg.includes('FPS not found')) {
+                        statusBadge.textContent = '⚠ Thiếu FPS';
+                        statusBadge.title = 'Không tìm thấy FPS cho video này';
+                    } else {
+                        statusBadge.textContent = '⚠ Lỗi';
+                        statusBadge.title = errorMsg;
+                    }
+                    
+                    console.error('Submit error:', errorMsg);
+                }
+            } catch (e) {
+                statusBadge.className = 'badge bg-warning';
+                statusBadge.textContent = 'Lỗi mạng';
+                console.error(e);
+            }
+        };
+        // Khi chọn frame, cập nhật info
+        function selectImage(card) {
+            // Prevent selection in drag mode
+            if (typeof dragDropMode !== 'undefined' && dragDropMode) {
+                return; // Don't select in drag mode
+            }
+            document.querySelectorAll('.image-card').forEach(c => c.style.border = '1px solid var(--border-color)');
+            card.style.border = '2px solid var(--primary-color)';
+            const videoInfo = card.dataset.videoInfo.split(',');
+            document.getElementById('videoNameInput').value = videoInfo[2];
+            document.getElementById('frameInput').value = videoInfo[3];
+            statusBadge.className = 'badge bg-secondary';
+            statusBadge.textContent = 'STATUS';
+        }
+
+        function playVideoFromCard(btn, image_id) {
+            // Lấy thông tin video từ image_id
+            const parts = image_id.split(',');
+            const timeStr = parts[0];
+            const videoName = parts[2];
+            const frameId = parts[3];
+            // Tính timestamp (giây)
+            const timeParts = timeStr.split(':');
+            const timestamp = parseInt(timeParts[0]) * 60 + parseInt(timeParts[1]);
+            // Tạo đối tượng dữ liệu video
+            currentVideoData = {
+                videoName: videoName,
+                frameId: frameId,
+                timestamp: timestamp,
+                timeStr: timeStr,
+                fps: 25  // Default FPS, will be updated with real FPS from server
+            };
+            
+            // Fetch real FPS from server
+            fetch(`${ROOT_PATH}/api/video_fps?video_name=${videoName}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.fps) {
+                        currentVideoData.fps = data.fps;
+                        console.log(`Updated FPS for ${videoName}: ${data.fps}`);
+                    }
+                })
+                .catch(error => {
+                    console.warn('Failed to fetch FPS, using default:', error);
+                });
+            
+            openVideoModal(); // Chỉ mở modal, không cập nhật input chọn frame
+        }
+
+        // Xử lý nút gạt hiển thị frames xung quanh
+        document.addEventListener('DOMContentLoaded', function() {
+            const frameSwitch = document.getElementById('frameSwitch');
+            
+            frameSwitch.addEventListener('change', function() {
+                const framesContainer = document.getElementById('framesContainer');
+                const videoPlayer = document.getElementById('videoPlayer');
+                const videoInfo = document.getElementById('videoInfo');
+                
+                if (this.checked) {
+                    // Bật hiển thị frames xung quanh, ẩn video player
+                    loadSurroundingFrames();
+                    videoPlayer.style.display = 'none';
+                    videoInfo.style.display = 'none'; // Ẩn thông tin video
+                    frameRangeControl.style.display = 'flex';
+                } else {
+                    // Tắt hiển thị frames xung quanh, hiện video player
+                    framesContainer.style.display = 'none';
+                    videoPlayer.style.display = 'block';
+                    videoInfo.style.display = 'block'; // Hiện thông tin video
+                    frameRangeControl.style.display = 'none';
+                    
+                    // Đảm bảo video được load và sẵn sàng phát
+                    if (currentVideoData) {
+                        const source = document.getElementById('videoSource');
+                        const videoUrl = `${ROOT_PATH}/video/${currentVideoData.videoName}.mp4`;
+                        
+                        // Nếu video chưa được load hoặc URL khác, load lại
+                        if (source.src !== videoUrl) {
+                            source.src = videoUrl;
+                            videoPlayer.load();
+                            
+                            // Đợi video load xong rồi seek
+                            videoPlayer.onloadeddata = function() {
+                                videoPlayer.currentTime = currentVideoData.timestamp;
+                                updateTimeDisplay();
+                            };
+                        } else {
+                            // Nếu video đã load, chỉ cần seek
+                            const targetTime = currentVideoData.timestamp;
+                            if (Math.abs(videoPlayer.currentTime - targetTime) > 1) {
+                                videoPlayer.currentTime = targetTime;
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Trung tâm xử lý phím cho điều hướng frame (đảm bảo chỉ 1 handler)
+            document.addEventListener('keydown', function(event) {
+                const activeElement = document.activeElement;
+                const isInputFocused = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA');
+                const frameSwitch = document.getElementById('frameSwitch');
+                if (!frameSwitch || !frameSwitch.checked || isInputFocused) return;
+    
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    prevSlide();
+                } else if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    nextSlide();
+                } else if (event.key === 'Enter') {
+                    const activeSlide = document.querySelector('.slide-item.active');
+                    if (activeSlide) {
+                        const tickBtn = activeSlide.querySelector('.select-frame-btn');
+                        if (tickBtn) {
+                            tickBtn.click();
+                            closeVideoModal();
+                            event.preventDefault();
+                        }
+                    }
+                }
+            });
+        });
+
+        // Function to setup navigation buttons with hold functionality
+        function setupNavigationButtons() {
+            const prevBtn = document.getElementById('prevNavBtn');
+            const nextBtn = document.getElementById('nextNavBtn');
+            
+            if (!prevBtn || !nextBtn) return;
+            
+            // Function to start continuous navigation
+            function startNavigation(direction) {
+                if (isNavigating) return;
+                
+                isNavigating = true;
+                
+                // First navigation immediately
+                if (direction === 'prev') {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+                
+                // Then continue with interval
+                navInterval = setInterval(() => {
+                    if (direction === 'prev') {
+                        prevSlide();
+                    } else {
+                        nextSlide();
+                    }
+                }, 200); // 200ms interval for smooth continuous navigation
+            }
+            
+            // Function to stop continuous navigation
+            function stopNavigation() {
+                if (navInterval) {
+                    clearInterval(navInterval);
+                    navInterval = null;
+                }
+                isNavigating = false;
+            }
+            
+            // Mouse events for prev button
+            prevBtn.addEventListener('mousedown', () => startNavigation('prev'));
+            prevBtn.addEventListener('mouseup', stopNavigation);
+            prevBtn.addEventListener('mouseleave', stopNavigation);
+            
+            // Mouse events for next button
+            nextBtn.addEventListener('mousedown', () => startNavigation('next'));
+            nextBtn.addEventListener('mouseup', stopNavigation);
+            nextBtn.addEventListener('mouseleave', stopNavigation);
+            
+            // Touch events for mobile
+            prevBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                startNavigation('prev');
+            });
+            prevBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                stopNavigation();
+            });
+            
+            nextBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                startNavigation('next');
+            });
+            nextBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                stopNavigation();
+            });
+            
+            // Click events for single navigation
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!isNavigating) {
+                    prevSlide();
+                }
+            });
+            
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!isNavigating) {
+                    nextSlide();
+                }
+            });
+        }
+        
+        // Hàm tải và hiển thị các frames xung quanh
+        function loadSurroundingFrames(rangeVal = 100) {
+            if (!currentVideoData) return;
+            
+            const framesContainer = document.getElementById('framesContainer');
+            const loading = document.getElementById('videoLoading');
+            
+            // Hiển thị loading
+            loading.style.display = 'block';
+            
+            // Xóa frames hiện tại
+            framesContainer.innerHTML = '';
+            
+            // Lấy thông tin frame hiện tại
+            const currentFrame = parseInt(currentVideoData.frameId);
+            const videoName = currentVideoData.videoName;
+            
+            // Khởi tạo mảng để lưu các frame đã chọn
+            window.surroundingFrames = [];
+            window.currentSlideIndex = 0;
+            
+            // Tăng tốc độ tải bằng cách thêm timestamp
+            const timestamp = new Date().getTime();
+            
+            // Gọi API để lấy thông tin frame xung quanh
+            // rangeVal: số frame trước và sau frame hiện tại trong thư mục keyframes
+            fetch(`${ROOT_PATH}/api/surrounding_frames?video_name=${videoName}&frame_id=${currentFrame}&range_val=${rangeVal}&t=${timestamp}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Kiểm tra dữ liệu trả về
+                    if (!data || !data.frames || !Array.isArray(data.frames)) {
+                        throw new Error('Dữ liệu không hợp lệ từ API');
+                    }
+                    
+                    // Lưu danh sách frames để sử dụng sau này
+                    window.allFrames = data.frames;
+                    
+                    // Tìm vị trí của frame hiện tại
+                    window.currentSlideIndex = data.frames.findIndex(frame => frame.is_current);
+                    if (window.currentSlideIndex === -1) window.currentSlideIndex = 0;
+                    
+                    // Tạo kết quả
+                    let slidesHTML = '<div class="frames-slider">';
+                    
+                    // Thêm container cho slides
+                    slidesHTML += '<div class="slide-container">';
+                    
+                    // Thêm các frame vào slide
+                    data.frames.forEach((frame, index) => {
+                        const frameId = frame.frame_id;
+                        
+                        // Thêm vào danh sách frame đã chọn
+                        window.surroundingFrames.push(frameId);
+                        
+                        // Đảm bảo URL bắt đầu bằng root path hiện tại
+                        let imageUrl = frame.url;
+                        const rootPrefix = ROOT_PATH || '';
+                        if (!imageUrl.startsWith(rootPrefix) && frame.exists) {
+                            imageUrl = rootPrefix + imageUrl;
+                        }
+                        
+                        if (frame.exists) {
+                            // Nếu frame tồn tại, hiển thị hình ảnh
+                            slidesHTML += `
+                                <div class="slide-item ${index === window.currentSlideIndex ? 'active' : ''}" data-frame-id="${frameId}">
+                                    <div class="select-frame-btn" onclick="selectFrameForSubmit(event, '${videoName}', ${frameId})">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <img src="${imageUrl}" alt="Frame ${frameId}" 
+                                        onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'no-frame-message\\'>Không thể tải hình ảnh</div>';">
+                                </div>
+                            `;
+                        } else {
+                            // Nếu frame không tồn tại, hiển thị placeholder
+                            slidesHTML += `
+                                <div class="slide-item ${index === window.currentSlideIndex ? 'active' : ''}" data-frame-id="${frameId}">
+                                    <div class="select-frame-btn" onclick="selectFrameForSubmit(event, '${videoName}', ${frameId})">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="no-frame-message">
+                                        ${frame.is_current ? 'Frame hiện tại không có dữ liệu' : 'Chưa có dữ liệu'}
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+                    
+                    // Đóng container
+                    slidesHTML += '</div>';
+                    
+                    // Thêm nút điều hướng
+                    slidesHTML += `
+                        <div class="slide-nav slide-prev" id="prevNavBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="slide-nav slide-next" id="nextNavBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    `;
+                    
+                    // Thêm timeline frame ở dưới
+                    slidesHTML += '<div class="frame-timeline">';
+                    
+                    // Thêm các frame thu nhỏ vào timeline
+                    data.frames.forEach((frame, index) => {
+                        const frameId = frame.frame_id;
+                        let imageUrl = frame.url;
+                        if (!imageUrl.startsWith(rootPrefix) && frame.exists) {
+                            imageUrl = rootPrefix + imageUrl;
+                        }
+                        
+                        if (frame.exists) {
+                            slidesHTML += `
+                                <div class="timeline-item ${index === window.currentSlideIndex ? 'active' : ''}" 
+                                     data-index="${index}" onclick="goToSlide(${index})">
+                                    <img src="${imageUrl}" alt="Frame ${frameId}">
+                                    <div class="frame-number">${frameId}</div>
+                                </div>
+                            `;
+                        } else {
+                            slidesHTML += `
+                                <div class="timeline-item ${index === window.currentSlideIndex ? 'active' : ''}" 
+                                     data-index="${index}" onclick="goToSlide(${index})">
+                                    <div class="timeline-placeholder">N/A</div>
+                                    <div class="frame-number">${frameId}</div>
+                                </div>
+                            `;
+                        }
+                    });
+                    
+                    slidesHTML += '</div>';
+                    slidesHTML += '</div>';
+                    
+                    // Thêm HTML vào container
+                    framesContainer.innerHTML = slidesHTML;
+                    
+                    // Setup event listeners cho navigation buttons
+                    setupNavigationButtons();
+                    
+                    // Scroll timeline đến frame hiện tại
+                    setTimeout(() => {
+                        const timeline = framesContainer.querySelector('.frame-timeline');
+                        const currentFrameItem = timeline.querySelector('.timeline-item.active');
+                        if (timeline && currentFrameItem) {
+                            // Tính toán vị trí để scroll frame hiện tại vào giữa
+                            const timelineWidth = timeline.clientWidth;
+                            const itemWidth = currentFrameItem.offsetWidth + 8; // 8px margin
+                            const itemOffset = currentFrameItem.offsetLeft;
+                            const scrollPosition = itemOffset - (timelineWidth / 2) + (itemWidth / 2);
+                            
+                            timeline.scrollTo({
+                                left: Math.max(0, scrollPosition),
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 100);
+                    
+                    // Hiển thị container và ẩn loading
+                    framesContainer.style.display = 'block';
+                    loading.style.display = 'none';
+                    
+                })
+                .catch(error => {
+                    console.error('Lỗi khi tải frame xung quanh:', error);
+                    
+                    // Hiển thị thông báo lỗi
+                    framesContainer.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Không thể tải frame xung quanh. Vui lòng thử lại sau.
+                        </div>
+                    `;
+                    
+                    // Hiển thị container và ẩn loading
+                    framesContainer.style.display = 'block';
+                    loading.style.display = 'none';
+                });
+        }
+        
+        // Hàm chuyển đến slide theo chỉ số
+        function goToSlide(index) {
+            if (!window.allFrames || window.allFrames.length === 0) return;
+            
+            // Cập nhật chỉ số slide hiện tại
+            window.currentSlideIndex = index;
+            
+            // Cập nhật hiển thị
+            updateSlideDisplay();
+        }
+        
+        // Hàm chuyển đến slide trước
+        function prevSlide() {
+            // Throttle: ignore rapid duplicate calls within 150ms
+            const now = Date.now();
+            if (now - lastFrameNavTime < 150) return;
+            lastFrameNavTime = now;
+
+            if (!window.allFrames || window.allFrames.length === 0) return;
+            
+            // Giảm chỉ số slide hiện tại
+            window.currentSlideIndex--;
+            if (window.currentSlideIndex < 0) {
+                window.currentSlideIndex = window.allFrames.length - 1;
+            }
+            
+            // Cập nhật hiển thị slide
+            updateSlideDisplay();
+        }
+        
+        // Hàm chuyển đến slide tiếp theo
+        function nextSlide() {
+            // Throttle: ignore rapid duplicate calls within 150ms
+            const now = Date.now();
+            if (now - lastFrameNavTime < 150) return;
+            lastFrameNavTime = now;
+
+            if (!window.allFrames || window.allFrames.length === 0) return;
+            
+            // Tăng chỉ số slide hiện tại
+            window.currentSlideIndex++;
+            if (window.currentSlideIndex >= window.allFrames.length) {
+                window.currentSlideIndex = 0;
+            }
+            
+            // Cập nhật hiển thị slide
+            updateSlideDisplay();
+        }
+        
+        // Hàm cập nhật hiển thị slide
+        function updateSlideDisplay() {
+            // Ẩn tất cả các slide
+            document.querySelectorAll('.slide-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Ẩn tất cả các timeline item
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Hiển thị slide hiện tại
+            const slides = document.querySelectorAll('.slide-item');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            if (slides.length > window.currentSlideIndex) {
+                slides[window.currentSlideIndex].classList.add('active');
+                
+                // Cập nhật frame được chọn
+                const frameId = window.allFrames[window.currentSlideIndex].frame_id;
+                selectFrame(frameId);
+            }
+            
+            if (timelineItems.length > window.currentSlideIndex) {
+                const timelineItem = timelineItems[window.currentSlideIndex];
+                const timeline = document.querySelector('.frame-timeline');
+                
+                // Thêm class active cho timeline item hiện tại
+                timelineItem.classList.add('active');
+                
+                if (timeline && timelineItem) {
+                    // Tính toán vị trí để item được chọn nằm ở giữa timeline
+                    const timelineWidth = timeline.offsetWidth;
+                    const itemWidth = timelineItem.offsetWidth;
+                    
+                    // Tính toán vị trí scroll cần thiết để căn giữa item
+                    const scrollPosition = (
+                        timelineItem.offsetLeft 
+                        - (timelineWidth / 2) 
+                        + (itemWidth / 2)
+                    );
+                    
+                    // Scroll đến vị trí đã tính với animation
+                    timeline.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+
+        // Hàm chọn frame mới từ container frames xung quanh
+        function selectFrame(frameId) {
+            if (!currentVideoData) return;
+            
+            // Cập nhật frame hiện tại
+            currentVideoData.frameId = frameId;
+            
+            // Cập nhật active frame
+            document.querySelectorAll('.frame-item').forEach(item => {
+                item.classList.remove('active');
+                const frameNumber = item.querySelector('.frame-number');
+                if (frameNumber && frameNumber.textContent === `Frame ${frameId}`) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Cập nhật thông tin hiển thị
+            document.getElementById('videoInfoFrame').textContent = frameId;
+            document.getElementById('frameInput').value = frameId;
+            
+            // Cập nhật title
+            document.getElementById('videoModalTitle').textContent = `${currentVideoData.videoName} - Frame ${frameId}`;
+            
+            console.log('Đã chọn frame:', frameId);
+        }
+
+        // Xử lý sự kiện khi nút gạt chuyển trạng thái
+        document.addEventListener('DOMContentLoaded', function() {
+            const frameSwitch = document.getElementById('frameSwitch');
+            const frameRangeControl = document.getElementById('frameRangeControl');
+            
+            // Xử lý thay đổi kích thước frame khi di chuyển thanh trượt
+            const frameSizeSlider = document.getElementById('frameSizeSlider');
+            const frameSizeValue = document.getElementById('frameSizeValue');
+            
+            if (frameSizeSlider) {
+                frameSizeSlider.addEventListener('input', function() {
+                    const size = this.value;
+                    frameSizeValue.textContent = size + '%';
+                    updateFrameSize(size);
+                });
+            }
+            
+            frameSwitch.addEventListener('change', function() {
+                const framesContainer = document.getElementById('framesContainer');
+                const videoPlayer = document.getElementById('videoPlayer');
+                const videoInfo = document.getElementById('videoInfo');
+                
+                if (this.checked) {
+                    // Bật hiển thị frames xung quanh, ẩn video player
+                    loadSurroundingFrames();
+                    videoPlayer.style.display = 'none';
+                    videoInfo.style.display = 'none'; // Ẩn thông tin video
+                    frameRangeControl.style.display = 'flex';
+                } else {
+                    // Tắt hiển thị frames xung quanh, hiện video player
+                    framesContainer.style.display = 'none';
+                    videoPlayer.style.display = 'block';
+                    videoInfo.style.display = 'block'; // Hiện thông tin video
+                    frameRangeControl.style.display = 'none';
+                    
+                    // Đảm bảo video được load và sẵn sàng phát
+                    if (currentVideoData) {
+                        const source = document.getElementById('videoSource');
+                        const videoUrl = `${ROOT_PATH}/video/${currentVideoData.videoName}.mp4`;
+                        
+                        // Nếu video chưa được load hoặc URL khác, load lại
+                        if (source.src !== videoUrl) {
+                            source.src = videoUrl;
+                            videoPlayer.load();
+                            
+                            // Đợi video load xong rồi seek
+                            videoPlayer.onloadeddata = function() {
+                                videoPlayer.currentTime = currentVideoData.timestamp;
+                                updateTimeDisplay();
+                            };
+                        } else {
+                            // Nếu video đã load, chỉ cần seek
+                            const targetTime = currentVideoData.timestamp;
+                            if (Math.abs(videoPlayer.currentTime - targetTime) > 1) {
+                                videoPlayer.currentTime = targetTime;
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Thêm sự kiện bàn phím để điều hướng slide
+            document.addEventListener('keydown', function(event) {
+                const activeElement = document.activeElement;
+                const isInputFocused = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable);
+                
+                if (frameSwitch.checked && !isInputFocused) {
+                    // Chỉ xử lý khi đang hiển thị frames và không đang nhập text
+                    if (event.key === 'ArrowLeft') {
+                        prevSlide();
+                        event.preventDefault();
+                    } else if (event.key === 'ArrowRight') {
+                        nextSlide();
+                        event.preventDefault();
+                    } else if (event.key === 'Enter') {
+                        const activeSlide = document.querySelector('.slide-item.active');
+                        if (activeSlide) {
+                            const tickBtn = activeSlide.querySelector('.select-frame-btn');
+                            if (tickBtn) {
+                                tickBtn.click();
+                                closeVideoModal();
+                                event.preventDefault();
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Hàm cập nhật kích thước frame
+        function updateFrameSize(sizePercent) {
+            // Lấy frame hiện tại
+            const currentSlide = document.querySelector('.slide-item.active');
+            const allSlides = document.querySelectorAll('.slide-item');
+            
+            if (!currentSlide) return;
+            
+            // Kích thước mặc định là 100%
+            const baseSize = 100;
+            const scaleFactor = sizePercent / baseSize;
+            
+            // Cập nhật kích thước cho tất cả các slide
+            allSlides.forEach(slide => {
+                const img = slide.querySelector('img');
+                if (img) {
+                    img.style.transform = `scale(${scaleFactor})`;
+                    img.style.transformOrigin = 'center center';
+                    img.style.transition = 'transform 0.2s ease';
+                }
+            });
+        }
+
+        // Hàm để cập nhật số lượng frame lân cận hiển thị
+        function updateFrameRange() {
+            if (!currentVideoData) return;
+            
+            // Lấy giá trị từ input
+            const rangeInput = document.getElementById('frameRangeInput');
+            const rangeVal = parseInt(rangeInput.value) || 100;
+            
+            // Giới hạn giá trị trong khoảng hợp lệ
+            const validRange = Math.min(Math.max(rangeVal, 50), 200);
+            rangeInput.value = validRange;
+            
+            // Tải lại frame với số lượng mới
+            loadSurroundingFrames(validRange);
+        }
+
+        // Hàm chọn frame để đưa lên form nộp bài
+        function selectFrameForSubmit(event, videoName, frameId) {
+            // Ngăn chặn sự kiện click lan tỏa
+            event.stopPropagation();
+            
+            // Cập nhật các trường input
+            document.getElementById('videoNameInput').value = videoName;
+            document.getElementById('frameInput').value = frameId;
+            
+            // Đặt lại trạng thái nút tích
+            document.querySelectorAll('.select-frame-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Đánh dấu nút hiện tại là đã chọn
+            event.currentTarget.classList.add('selected');
+            
+            // Reset trạng thái badge
+            const statusBadge = document.getElementById('statusBadge');
+            statusBadge.className = 'badge bg-secondary';
+            statusBadge.textContent = 'STATUS';
+        }
+
+        // Xử lý dark mode và các thiết lập khác khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            // Xử lý dark mode
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (darkModeToggle) {
+            // Kiểm tra trạng thái dark mode đã lưu
+                const storedPreference = localStorage.getItem('darkMode');
+                const isDarkMode = storedPreference ? storedPreference === 'true' : prefersDark;
+            
+            if (isDarkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                darkModeToggle.checked = true;
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    darkModeToggle.checked = false;
+            }
+            
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('darkMode', 'false');
+                }
+            });
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        // ==================== Hover Preview for Image Cards ====================
+        const HOVER_PREVIEW_DELAY_MS = 350;
+        let hoverPreviewTimer = null;
+        let hoverPreviewEl = null;
+        let hoverPreviewVideo = null;
+        let lastLoadedVideo = '';
+
+        function ensureHoverPreview() {
+            if (hoverPreviewEl) return;
+            hoverPreviewEl = document.createElement('div');
+            hoverPreviewEl.id = 'hoverPreview';
+            hoverPreviewEl.style.position = 'fixed';
+            hoverPreviewEl.style.zIndex = '10000';
+            hoverPreviewEl.style.pointerEvents = 'none';
+            hoverPreviewEl.style.display = 'none';
+            hoverPreviewEl.style.background = 'rgba(0,0,0,0.85)';
+            hoverPreviewEl.style.border = '1px solid #444';
+            hoverPreviewEl.style.borderRadius = '6px';
+            hoverPreviewEl.style.boxShadow = '0 8px 24px rgba(0,0,0,0.35)';
+            hoverPreviewEl.style.padding = '4px';
+
+            hoverPreviewVideo = document.createElement('video');
+            hoverPreviewVideo.muted = true;
+            hoverPreviewVideo.autoplay = true;
+            hoverPreviewVideo.loop = true;
+            hoverPreviewVideo.playsInline = true;
+            hoverPreviewVideo.preload = 'metadata';
+            hoverPreviewVideo.playbackRate = 2.0;
+            hoverPreviewVideo.style.maxWidth = '420px';
+            hoverPreviewVideo.style.maxHeight = '320px';
+            hoverPreviewVideo.style.display = 'block';
+            hoverPreviewEl.appendChild(hoverPreviewVideo);
+            document.body.appendChild(hoverPreviewEl);
+        }
+        function ensureHoverPreview() {
+            if (hoverPreviewEl) return;
+            hoverPreviewEl = document.createElement('div');
+            hoverPreviewEl.id = 'hoverPreview';
+            hoverPreviewEl.style.position = 'fixed';
+            hoverPreviewEl.style.zIndex = '10000';
+            hoverPreviewEl.style.pointerEvents = 'none';
+            hoverPreviewEl.style.display = 'none';
+            hoverPreviewEl.style.background = 'rgba(0,0,0,0.85)';
+            hoverPreviewEl.style.border = '1px solid #444';
+            hoverPreviewEl.style.borderRadius = '6px';
+            hoverPreviewEl.style.boxShadow = '0 8px 24px rgba(0,0,0,0.35)';
+            hoverPreviewEl.style.padding = '4px';
+
+            hoverPreviewVideo = document.createElement('video');
+            hoverPreviewVideo.muted = true;
+            hoverPreviewVideo.autoplay = true;
+            hoverPreviewVideo.loop = true;
+            hoverPreviewVideo.playsInline = true;
+            hoverPreviewVideo.preload = 'metadata';
+            hoverPreviewVideo.playbackRate = 2.0;
+            hoverPreviewVideo.style.maxWidth = '420px';
+            hoverPreviewVideo.style.maxHeight = '320px';
+            hoverPreviewVideo.style.display = 'block';
+            hoverPreviewEl.appendChild(hoverPreviewVideo);
+            document.body.appendChild(hoverPreviewEl);
+        }
+
+        function positionHoverPreview(x, y) {
+            if (!hoverPreviewEl) return;
+            const margin = 16;
+            const iw = window.innerWidth;
+            const ih = window.innerHeight;
+            const bw = hoverPreviewEl.offsetWidth || 420;
+            const bh = hoverPreviewEl.offsetHeight || 320;
+            let left = x + margin;
+            let top = y + margin;
+            if (left + bw > iw) left = x - bw - margin;
+            if (top + bh > ih) top = y - bh - margin;
+            hoverPreviewEl.style.left = Math.max(8, left) + 'px';
+            hoverPreviewEl.style.top = Math.max(8, top) + 'px';
+        }
+
+        function showHoverPreviewForCard(card, clientX, clientY) {
+            ensureHoverPreview();
+            const info = card.dataset.videoInfo || '';
+            const parts = info.split(',');
+            if (parts.length < 4) return;
+            const timeStr = parts[0];
+            const videoName = parts[2];
+            const tp = timeStr.split(':');
+            const timestamp = (parseInt(tp[0]) || 0) * 60 + (parseInt(tp[1]) || 0);
+
+            const src = `${ROOT_PATH}/video/${videoName}.mp4`;
+            // Chỉ tải video mới nếu khác với video hiện tại
+            if (lastLoadedVideo !== src) {
+                hoverPreviewVideo.src = src;
+                lastLoadedVideo = src;
+            }
+
+            // Force playback speed each time (some browsers reset when src/time changes)
+            const forceSpeed = () => { try { hoverPreviewVideo.playbackRate = 3.0; } catch(e) {} };
+            const tryPlay = () => { forceSpeed(); hoverPreviewVideo.play().then(forceSpeed).catch(() => { forceSpeed(); }); };
+            if (hoverPreviewVideo.readyState >= 1) {
+                hoverPreviewVideo.currentTime = Math.max(0, timestamp);
+                forceSpeed();
+                tryPlay();
+            } else {
+                hoverPreviewVideo.onloadedmetadata = () => {
+                    hoverPreviewVideo.currentTime = Math.max(0, timestamp);
+                    forceSpeed();
+                    tryPlay();
+                };
+            }
+
+            hoverPreviewEl.style.display = 'block';
+            positionHoverPreview(clientX, clientY);
+        }
+
+        function hideHoverPreview() {
+            if (!hoverPreviewEl) return;
+            hoverPreviewEl.style.display = 'none';
+            if (hoverPreviewVideo) {
+                hoverPreviewVideo.pause();
+            }
+        }
+
+        // Hàm format answer theo chuẩn CSV
+        function formatCSVAnswer(answer) {
+            if (!answer) return '';
+            
+            // Escape dấu ngoặc kép bằng cách thêm một dấu ngoặc kép nữa
+            const escaped = answer.replace(/"/g, '""');
+            
+            // Luôn đặt trong dấu ngoặc kép để đảm bảo định dạng thống nhất
+            return `"${escaped}"`;
+        }
+
+        // Hàm xuất dữ liệu ra file CSV
+
+        // Hàm submit TRAKE từ modal video
+        async function submitTRAKEFromModal() {
+            // Lấy thông tin cần thiết
+            const videoName = currentVideoData?.videoName || '';
+            const sessionId = document.getElementById('sessionIdInput').value.trim();
+            const evalId = document.getElementById('evalIdInput').value.trim();
+            
+            const frameInputs = [
+                document.getElementById('addFrameInput1'),
+                document.getElementById('addFrameInput2'),
+                document.getElementById('addFrameInput3'),
+                document.getElementById('addFrameInput4')
+            ];
+
+            // Validate
+            if (!videoName) {
+                alert('Không có video nào đang được xem');
+                return;
+            }
+
+            if (!sessionId || !evalId) {
+                alert('Vui lòng nhập Session ID và Evaluation ID ở ngoài trước');
+                return;
+            }
+
+            const frameIds = frameInputs.map(input => input?.value.trim()).filter(val => val !== '');
+
+            if (frameIds.length < 2) {
+                alert('TRAKE cần ít nhất 2 frames. Vui lòng nhập thêm frames!');
+                return;
+            }
+
+            // Hiển thị loading
+            const btn = document.getElementById('submitTrakeBtnModal');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang nộp...';
+            btn.disabled = true;
+
+            try {
+                // Gọi API submit
+                const res = await fetch(`${ROOT_PATH}/submit_dres`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        session_id: sessionId, 
+                        evaluation_id: evalId, 
+                        mediaitem: videoName, 
+                        frame: frameIds[0],  // Không dùng nhưng vẫn gửi
+                        submission_type: 'TRAKE',
+                        trake_frame_list: frameIds.join(',')
+                    })
+                });
+                
+                const data = await res.json();
+                
+                // Hiển thị kết quả
+                if (data.status === 'success') {
+                    btn.innerHTML = '<i class="fas fa-check"></i> TRAKE Đúng';
+                    btn.className = 'btn btn-success';
+                    alert('✓ TRAKE submission đúng!');
+                } else if (data.status === 'fail') {
+                    btn.innerHTML = '<i class="fas fa-times"></i> TRAKE Sai';
+                    btn.className = 'btn btn-danger';
+                    alert('✗ TRAKE submission sai!');
+                } else {
+                    // Xử lý lỗi chi tiết
+                    const errorMsg = data.msg || 'Unknown error';
+                    
+                    // Kiểm tra lỗi duplicate submission (412)
+                    if (errorMsg.includes('Duplicate submission') || errorMsg.includes('412')) {
+                        btn.innerHTML = '<i class="fas fa-info-circle"></i> Đã nộp rồi';
+                        btn.className = 'btn btn-warning';
+                        alert('⚠ Bạn đã nộp TRAKE này trước đó rồi!\n\nDRES đã nhận câu trả lời này và không chấp nhận submission trùng lặp.');
+                    } else if (errorMsg.includes('404')) {
+                        btn.innerHTML = '<i class="fas fa-exclamation"></i> Không tìm thấy';
+                        btn.className = 'btn btn-warning';
+                        alert('⚠ Lỗi 404: ' + errorMsg);
+                    } else if (errorMsg.includes('FPS not found')) {
+                        btn.innerHTML = '<i class="fas fa-exclamation"></i> Thiếu FPS';
+                        btn.className = 'btn btn-warning';
+                        alert('⚠ Không tìm thấy FPS cho video này');
+                    } else {
+                        btn.innerHTML = '<i class="fas fa-exclamation"></i> Lỗi';
+                        btn.className = 'btn btn-warning';
+                        alert('Lỗi: ' + errorMsg);
+                    }
+                    
+                    console.error('TRAKE submit error:', errorMsg);
+                }
+
+                // Reset button sau 3 giây
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.className = 'btn btn-success';
+                    btn.disabled = false;
+                }, 3000);
+
+            } catch (e) {
+                console.error('Submit TRAKE error:', e);
+                btn.innerHTML = '<i class="fas fa-exclamation"></i> Lỗi mạng';
+                btn.className = 'btn btn-danger';
+                alert('Lỗi mạng: ' + e.message);
+                
+                // Reset button
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.className = 'btn btn-success';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        }
+
+        function attachHoverPreviewHandlers() {
+            const cards = document.querySelectorAll('.image-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', (e) => {
+                    clearTimeout(hoverPreviewTimer);
+                    hoverPreviewTimer = setTimeout(() => {
+                        showHoverPreviewForCard(card, e.clientX, e.clientY);
+                    }, HOVER_PREVIEW_DELAY_MS);
+                });
+                card.addEventListener('mousemove', (e) => {
+                    if (hoverPreviewEl && hoverPreviewEl.style.display === 'block') {
+                        positionHoverPreview(e.clientX, e.clientY);
+                    }
+                });
+                card.addEventListener('mouseleave', () => {
+                    clearTimeout(hoverPreviewTimer);
+                    hideHoverPreview();
+                });
+                card.addEventListener('click', () => {
+                    clearTimeout(hoverPreviewTimer);
+                    hideHoverPreview();
+                });
+            });
+            window.addEventListener('scroll', hideHoverPreview, { passive: true });
+        }
+
+        document.addEventListener('DOMContentLoaded', attachHoverPreviewHandlers);
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Áp dụng debounce cho hover preview
+        const debouncedShowPreview = debounce((card, x, y) => {
+            showHoverPreviewForCard(card, x, y);
+        }, 150);
+
+        document.getElementById('customResultsLimit').addEventListener('input', function() {
+            let value = parseInt(this.value);
+            if (isNaN(value) || value < 0) value = 0;
+            if (value > 1000) value = 1000;
+            this.value = value;
+        });
+
+
+
+        // Delete frame functionality
+        async function deleteFrame(button, frameId) {
+            try {
+                console.log('Attempting to delete frame:', frameId);
+                
+                // Try different API paths for delete_frame
+                const apiPaths = [
+                    `${ROOT_PATH}/api/delete_frame`,
+                    '/api/delete_frame'
+                ];
+                let response = null;
+                
+                for (const path of apiPaths) {
+                    try {
+                        console.log('Trying delete_frame API path:', path);
+                        response = await fetch(path, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                frame_id: frameId
+                            })
+                        });
+                        
+                        console.log('Delete response status:', response.status);
+                        
+                        if (response.ok) {
+                            break; // Success, exit loop
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                    } catch (error) {
+                        console.log('Delete path failed:', path, error.message);
+                        response = null;
+                    }
+                }
+                
+                if (!response) {
+                    console.error('All delete API paths failed');
+                    // Still delete locally as fallback
+                    const card = button.closest('.image-card');
+                    if (card) {
+                        card.remove();
+                        updateFrameNumbers(); // Update frame numbers after deletion
+                        console.log('Deleted frame locally due to API failure:', frameId);
+                    }
+                    return;
+                }
+                
+                const result = await response.json();
+                console.log('Delete result:', result);
+                
+                if (result && result.status === 'success') {
+                    const card = button.closest('.image-card');
+                    card.remove();
+                    updateFrameNumbers(); // Update frame numbers after deletion
+                    console.log('Successfully deleted frame:', frameId);
+                } else {
+                    const errorMsg = result && result.message ? result.message : 'Unknown server error';
+                    console.error('Server returned error:', errorMsg);
+                    alert('Lỗi khi xóa frame: ' + errorMsg);
+                }
+            } catch (error) {
+                console.error('Error deleting frame:', error);
+                // Xóa frame ngay cả khi server lỗi (fallback)
+                const card = button.closest('.image-card');
+                if (card) {
+                    card.remove();
+                    console.log('Deleted frame locally due to server error:', frameId);
+                }
+            }
+        }
+
+        // Drag & Drop functionality
+        let dragDropMode = false;
+        let draggedElement = null;
+        let draggedIndex = -1;
+
+        // Toggle drag & drop mode - setup in DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragDropToggle = document.getElementById('dragDropToggle');
+            if (dragDropToggle) {
+                dragDropToggle.addEventListener('click', function() {
+                    dragDropMode = !dragDropMode;
+                    const imageGrid = document.getElementById('imageGrid');
+                    
+                    if (dragDropMode) {
+                        imageGrid.classList.add('drag-drop-mode');
+                        this.innerHTML = '<i class="fas fa-lock"></i> Exit Export CSV';
+                        this.style.backgroundColor = '#dc3545';
+                        this.style.borderColor = '#dc3545';
+                    } else {
+                        imageGrid.classList.remove('drag-drop-mode');
+                        this.innerHTML = '<i class="fas fa-file-csv"></i> Export CSV';
+                        this.style.backgroundColor = '#8e44ad';
+                        this.style.borderColor = '#8e44ad';
+                    }
+                });
+            }
+        });
+
+        // Add drag & drop event listeners to a card
+        function addDragDropListeners(card) {
+            card.draggable = true;
+            
+            card.addEventListener('dragstart', function(e) {
+                if (!dragDropMode) {
+                    e.preventDefault();
+                    return;
+                }
+                draggedElement = this;
+                draggedIndex = Array.from(this.parentNode.children).indexOf(this);
+                this.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/html', this.outerHTML);
+            });
+            
+            card.addEventListener('dragend', function(e) {
+                this.classList.remove('dragging');
+                document.querySelectorAll('.image-card').forEach(card => {
+                    card.classList.remove('drag-over');
+                });
+            });
+            
+            card.addEventListener('dragover', function(e) {
+                if (!dragDropMode) return;
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                this.classList.add('drag-over');
+            });
+            
+            card.addEventListener('dragleave', function(e) {
+                this.classList.remove('drag-over');
+            });
+            
+            card.addEventListener('drop', async function(e) {
+                if (!dragDropMode) return;
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                
+                if (draggedElement && draggedElement !== this) {
+                    const dropIndex = Array.from(this.parentNode.children).indexOf(this);
+                    const parent = this.parentNode;
+                    
+                    if (draggedIndex < dropIndex) {
+                        parent.insertBefore(draggedElement, this.nextSibling);
+                    } else {
+                        parent.insertBefore(draggedElement, this);
+                    }
+                    
+                    // Update frame numbers immediately after drop
+                    updateFrameNumbers();
+                    
+                    // Send reorder information to server
+                    await sendReorderToServer();
+                }
+            });
+        }
+
+        // Update frame numbers after reordering or deleting
+        function updateFrameNumbers() {
+            const imageGrid = document.getElementById('imageGrid');
+            const cards = imageGrid.querySelectorAll('.image-card');
+            
+            cards.forEach((card, index) => {
+                const frameNumber = card.querySelector('.frame-number');
+                if (frameNumber) {
+                    frameNumber.textContent = index + 1;
+                }
+            });
+            
+            console.log(`Updated frame numbers: ${cards.length} frames`);
+        }
+
+        // Send reorder information to server
+        async function sendReorderToServer() {
+            try {
+                const imageGrid = document.getElementById('imageGrid');
+                const cards = imageGrid.querySelectorAll('.image-card');
+                const frameOrder = Array.from(cards).map(card => card.getAttribute('data-video-info'));
+                
+                console.log('Sending reorder request with', frameOrder.length, 'frames');
+                
+                // Try different API paths for reorder_frames
+                const apiPaths = [`${ROOT_PATH}/api/reorder_frames`, '/api/reorder_frames'];
+                let response = null;
+                
+                for (const path of apiPaths) {
+                    try {
+                        console.log('Trying reorder_frames API path:', path);
+                        response = await fetch(path, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                frame_order: frameOrder
+                            })
+                        });
+                        
+                        console.log('Reorder response status:', response.status);
+                        
+                        if (response.ok) {
+                            break; // Success, exit loop
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                    } catch (error) {
+                        console.log('Reorder path failed:', path, error.message);
+                        response = null;
+                    }
+                }
+                
+                if (!response) {
+                    console.log('Reorder API not available, continuing with client-side reorder only');
+                    return;
+                }
+                
+                const result = await response.json();
+                console.log('Reorder result:', result);
+                
+                if (result && result.status === 'success') {
+                    console.log('Frames reordered successfully');
+                    updateFrameNumbers(); // Update frame numbers after reordering
+                } else {
+                    const errorMsg = result && result.message ? result.message : 'Unknown server error';
+                    console.error('Error reordering frames:', errorMsg);
+                }
+            } catch (error) {
+                console.error('Error sending reorder to server:', error);
+            }
+        }
+
+        // Add drag & drop listeners to existing cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const existingCards = document.querySelectorAll('.image-card');
+            existingCards.forEach(card => {
+                addDragDropListeners(card);
+            });
+            
+            // Initialize frame numbers
+            updateFrameNumbers();
+        });
+
+        // Xử lý sự kiện click nút Add và Submit TRAKE (gộp chung DOMContentLoaded)
+        document.addEventListener('DOMContentLoaded', function() {
+            // === SUBMIT TRAKE FUNCTIONALITY ===
+            // Nút submit TRAKE trong modal video
+            const submitTrakeBtnModal = document.getElementById('submitTrakeBtnModal');
+            if (submitTrakeBtnModal) {
+                submitTrakeBtnModal.addEventListener('click', submitTRAKEFromModal);
+            }
+
+            // === ADD FRAME FUNCTIONALITY ===
+            const addBtn = document.getElementById('addFrameBtn');
+
+            // Lấy 4 ô input
+            const inputs = [
+                document.getElementById('addFrameInput1'),
+                document.getElementById('addFrameInput2'),
+                document.getElementById('addFrameInput3'),
+                document.getElementById('addFrameInput4')
+            ];
+
+            addBtn.addEventListener('click', function() {
+                if (!currentVideoData || !currentVideoData.frameId) return;
+
+                const player = document.getElementById('videoPlayer');
+                if (!player) return;
+
+                const fps = currentVideoData.fps || 25;
+
+                // Tính frame hiện tại trực tiếp từ thời gian video player
+                const currentFrame = Math.round(player.currentTime * fps);
+
+                const frameId = currentFrame.toString();
+
+                // Tìm ô trống đầu tiên từ trái qua phải
+                let targetIndex = -1;
+                for (let i = 0; i < inputs.length; i++) {
+                    if (!inputs[i].value.trim()) {
+                        targetIndex = i;
+                        break;
+                    }
+                }
+
+                // Nếu tất cả ô đều có giá trị, thêm vào ô cuối cùng
+                if (targetIndex === -1) {
+                    targetIndex = inputs.length - 1;
+                }
+
+                // Thêm frameId vào ô được tìm thấy
+                inputs[targetIndex].value = frameId;
+            });
+
+        // Xử lý sự kiện click nút Sort
+            const sortBtn = document.getElementById('sortFrameBtn');
+            sortBtn.addEventListener('click', function() {
+                // Lấy giá trị 4 ô input
+                const values = inputs.map(input => input.value.trim())
+                                     .filter(val => val !== '' && !isNaN(val))
+                                     .map(Number);
+                // Sắp xếp tăng dần
+                values.sort((a, b) => a - b);
+
+                // Cập nhật lại các ô input
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].value = values[i] !== undefined ? values[i].toString() : '';
+                }
+            });
+        });
+
+        // Search functions for OD, OCR, ASR
+        function searchOD() {
+            const query = document.getElementById('odSearchInput').value.trim();
+            if (query) {
+                document.getElementById('searchInput').value = query;
+                document.getElementById('searchForm').submit();
+            }
+        }
+
+        function searchOCR() {
+            const query = document.getElementById('ocrSearchInput').value.trim();
+            if (query) {
+                document.getElementById('searchInput').value = query;
+                document.getElementById('searchForm').submit();
+            }
+        }
+
+        function searchASR() {
+            const query = document.getElementById('asrSearchInput').value.trim();
+            if (query) {
+                document.getElementById('searchInput').value = query;
+                document.getElementById('searchForm').submit();
+            }
+        }
+
+        // Allow Enter key to trigger search in OD, OCR, ASR inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const odInput = document.getElementById('odSearchInput');
+            const ocrInput = document.getElementById('ocrSearchInput');
+            const asrInput = document.getElementById('asrSearchInput');
+            
+            if (odInput) {
+                odInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchOD();
+                    }
+                });
+            }
+            
+            if (ocrInput) {
+                ocrInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchOCR();
+                    }
+                });
+            }
+            
+            if (asrInput) {
+                asrInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchASR();
+                    }
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
+
+
